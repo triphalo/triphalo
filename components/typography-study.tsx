@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import ResonanceExperience from "./resonance-experience";
+import TripHaloWordmark from "./triphalo-wordmark";
 
 const directions = [
-  { id: "precision", number: "01", name: "Precision", fonts: "Mona Sans + IBM Plex Mono", note: "Measured, quiet, contemporary. My recommended direction." },
+  { id: "precision", number: "01", name: "Precision", fonts: "Mona Sans + IBM Plex Mono", note: "The selected direction. Measured, quiet and contemporary." },
   { id: "humanist", number: "02", name: "Humanist", fonts: "Bricolage Grotesque + Source Sans 3", note: "More character in the letters. Warmth without a serif accent." },
   { id: "editorial", number: "03", name: "Editorial", fonts: "Newsreader + IBM Plex Sans", note: "A complete roman headline. Literary, calm and assured." },
-  { id: "baseline", number: "00", name: "Current", fonts: "Manrope + Instrument Serif", note: "The committed typography, for comparison." },
+  { id: "baseline", number: "00", name: "Original", fonts: "Manrope + Instrument Serif", note: "The original typography, for comparison." },
 ] as const;
 type Direction = typeof directions[number]["id"];
 
@@ -54,8 +55,8 @@ export default function TypographyStudy({ children }: { children: React.ReactNod
     window.history.replaceState(null, "", url);
   };
 
-  return <div className="type-study" data-direction={direction}>
-    <ResonanceExperience wordmark={direction === "baseline" ? undefined : <HaloWordmark />}>{children}</ResonanceExperience>
+  return <div className="r-typography type-study" data-direction={direction}>
+    <ResonanceExperience wordmark={direction === "precision" ? <TripHaloWordmark /> : direction === "baseline" ? undefined : <HaloWordmark />}>{children}</ResonanceExperience>
     <aside className="t-tools" aria-label="Typography comparison" data-open={open}>
       {open && <div id="type-options" className="t-panel">
         <div className="t-panel-heading"><span>Typography study</span><button type="button" onClick={toggleOptions} aria-label="Hide typography options">−</button></div>

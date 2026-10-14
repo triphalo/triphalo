@@ -13,7 +13,9 @@ npm run dev -- --port 4310
 
 Open <http://127.0.0.1:4310>.
 
-Typography options are at <http://127.0.0.1:4310/type-study>. Switch between Precision (Mona Sans / IBM Plex Mono), Humanist (Bricolage Grotesque / Source Sans 3), Editorial (Newsreader / IBM Plex Sans) and the current pairing. The comparison preserves the artwork and scroll position; its review panel can be minimised. These are proposals, not a selected replacement for the homepage typography. Local font licences and provenance are in `public/fonts/type-study/`.
+The homepage uses the selected Precision pairing: Mona Sans for the headline, body and wordmark, with IBM Plex Mono for small details. The wordmark retains the font's normal lowercase `o`, with a tiny gold dot on its upper-right stroke.
+
+Typography alternatives remain at <http://127.0.0.1:4310/type-study>. Switch between Precision, Humanist (Bricolage Grotesque / Source Sans 3), Editorial (Newsreader / IBM Plex Sans) and the original pairing. The comparison preserves the artwork and scroll position; its review panel can be minimised. Local font licences and provenance are in `public/fonts/type-study/`. Proposed wording edits are presented separately in `docs/copy-proposal.md`; none has been applied to the site.
 
 The approved neural-halo and human-landscape baseline is preserved in local commit `7d77204`. Later typography and control refinements are separate from that checkpoint.
 
@@ -41,8 +43,9 @@ Installed Google Chrome is the default browser for the standalone verifier. The 
 ## Source map
 
 - `app/page.tsx` and `components/resonance-copy.tsx`: server-rendered copy and semantic page structure, shared with the typography comparison.
-- `app/type-study/` and `components/typography-study.tsx`: local typography and halo-wordmark proposals.
-- `app/resonance.css`: current composition, local typography and responsive layouts.
+- `app/type-study/` and `components/typography-study.tsx`: local typography comparison.
+- `app/resonance.css`: composition and responsive layouts; `app/typography.css`: shared selected and comparison type treatments.
+- `components/triphalo-wordmark.tsx` and `app/wordmark.css`: normal-lettering wordmark with the small gold dot.
 - `components/resonance-experience.tsx`: native section navigation, pointer/touch input, keyboard-accessible controls, pause and reduced-motion handling.
 - `components/resonance-engine.ts`: procedural neural halo, incoming light, perspective passage and scene transitions.
 - `components/human-landscape.ts`: procedural light-particle figures, terrain and horizon.
