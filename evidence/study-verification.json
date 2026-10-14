@@ -1,0 +1,29 @@
+{
+  "result": "LOCAL PASS",
+  "target": "http://127.0.0.1:3000/study",
+  "stats": {
+    "total": 9,
+    "expected": 9,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "conditions": "Installed Chrome, Playwright, ANGLE SwiftShader, 1 worker; final local Next.js production server",
+  "checks": [
+    "1440px desktop, 390px mobile and 320px narrow mobile without horizontal overflow",
+    "Native scroll follows alignment, passage and world phases with distinct rendered viewport captures",
+    "Keyboard chapter navigation, pause freezes frames during scroll, resume reconciles current scroll",
+    "Reduced motion uses static world; dynamic preference disposes and restores exactly one canvas",
+    "Forced WebGL initialisation failure preserves visible image and final heading without unhandled page errors",
+    "Local fallback WebP resolves; complete journey has no console errors, page errors, failed asset requests or broken images"
+  ],
+  "scope": "Standalone local motion study only; no deployment or remote publication performed by this verification",
+  "limitations": [
+    "Automated phase/pixel checks support visual review but do not judge artistic quality",
+    "Software WebGL emulation, not a physical phone GPU or cross-browser performance benchmark"
+  ],
+  "durationSeconds": 47.4,
+  "capturedAt": "2026-10-14T10:13:36.109000+00:00",
+  "homepageSmoke": "study-verification-homepage-smoke.json"
+}

@@ -12,4 +12,7 @@ evidence/lighthouse*.html
 evidence/lighthouse*.json
 evidence/playwright-results/
 evidence/recordings/
+evidence/study-verification-report/
+evidence/study-verification-results/
+evidence/*.mp4
 !evidence/lighthouse-summary.json

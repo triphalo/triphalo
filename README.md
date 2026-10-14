@@ -20,6 +20,12 @@ npm run start
 
 There are no required environment variables, external content services, forms, analytics or application backend. Fonts and production artwork are local. Font licences are included in `public/fonts/`.
 
+## Aperture motion study
+
+Open `/study` for the separate local motion study: three architectural layers align, the camera passes through their openings, and an inhabited garden room takes over. Scroll naturally or use the three chapter controls. Pause and replay are available; reduced motion presents a static scene and narrative.
+
+The study uses real-time 3D architecture and foreground foliage around a generated artwork plate. The people are still within that plate; final artwork, character animation and full-page content integration remain separate creative steps. See `evidence/aperture-study.md` for scope and the generation prompt. `node scripts/capture-study.mjs` captures the sequence from port 3001 by default; set `STUDY_URL` for another local server. Focused verification: `PLAYWRIGHT_CHANNEL=chrome npx playwright test tests/study.spec.ts`.
+
 ## Verification
 
 ```sh
