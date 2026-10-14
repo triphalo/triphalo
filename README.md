@@ -1,135 +1,71 @@
-# Gatsby + Netlify CMS Starter
+# TripHalo studio
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b654c94e-08a6-4b79-b443-7837581b1d8d/deploy-status)](https://app.netlify.com/sites/gatsby-starter-netlify-cms-ci/deploys)
+An independent technology and experience studio. A statically rendered Next.js one-page website with an original, live Three.js aperture and one enquiry route: `hello@triphalo.com`.
 
-**Note:** This starter uses [Gatsby v4](https://www.gatsbyjs.com/gatsby-4/).
+## Local development
 
-This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
+Use Node 22 and npm. The committed lockfile is authoritative.
 
-It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
-
-## Features
-
-- A simple landing page with blog functionality built with Netlify CMS
-- Editable Pages: Landing, About, Product, Blog-Collection and Contact page with Netlify Form support
-- Create Blog posts from Netlify CMS
-- Tags: Separate page for posts under each tag
-- Basic directory organization
-- Uses Bulma for styling, but size is reduced by `gatsy-plugin-purgecss`
-- Blazing fast loading times thanks to pre-rendered HTML and automatic chunk loading of JS files
-- Uses `gatsby-plugin-image` with Netlify-CMS preview support
-- Separate components for everything
-- Netlify deploy configuration
-- Netlify function support, see `netlify/functions` folder
-- Perfect score on Lighthouse for SEO, Accessibility and Performance (wip:PWA)
-- ..and more
-
-## Prerequisites
-
-- Minimal Node.js version 14.15.0
-- [Gatsby CLI](https://www.gatsbyjs.com/docs/reference/gatsby-cli/)
-- [Netlify CLI](https://github.com/netlify/cli)
-
-## Getting Started (Recommended)
-
-Netlify CMS can run in any frontend web environment, but the quickest way to try it out is by running it on a pre-configured starter site with Netlify. The example here is the Kaldi coffee company template (adapted from [One Click Hugo CMS](https://github.com/netlify-templates/one-click-hugo-cms)). Use the button below to build and deploy your own copy of the repository:
-
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/gatsby-starter-netlify-cms&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
-
-After clicking that button, you’ll authenticate with GitHub and choose a repository name. Netlify will then automatically create a repository in your GitHub account with a copy of the files from the template. Next, it will build and deploy the new site on Netlify, bringing you to the site dashboard when the build is complete. Next, you’ll need to set up Netlify’s Identity service to authorize users to log in to the CMS.
-
-### Access Locally
-
-Pulldown a local copy of the Github repository Netlify created for you, with the name you specified in the previous step
-
-```
-$ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
-$ cd [REPO_NAME]
-$ yarn
-$ netlify dev # or ntl dev
+```sh
+npm ci
+npm run dev
 ```
 
-This uses [Netlify Dev](https://www.netlify.com/products/dev/?utm_source=blog&utm_medium=netlifycms&utm_campaign=devex) CLI feature to serve any functions you have in the `netlify/functions` folder.
+Open http://127.0.0.1:3000. For the production preview:
 
-To test the CMS locally, you'll need to run a production build of the site:
-
-```
-$ npm run build
-$ netlify dev # or ntl dev
+```sh
+npm run build
+npm run start
 ```
 
-### Media Libraries (installed, but optional)
+There are no required environment variables, external content services, forms, analytics or application backend. Fonts and production artwork are local. Font licences are included in `public/fonts/`.
 
-Media Libraries have been included in this starter as a default. If you are not planning to use `Uploadcare` or `Cloudinary` in your project, you **can** remove them from module import and registration in `src/cms/cms.js`. Here is an example of the lines to comment or remove them your project.
+## Verification
 
-```javascript
-import CMS from "netlify-cms-app";
-// import uploadcare from 'netlify-cms-media-library-uploadcare'
-// import cloudinary from 'netlify-cms-media-library-cloudinary'
-
-import AboutPagePreview from "./preview-templates/AboutPagePreview";
-import BlogPostPreview from "./preview-templates/BlogPostPreview";
-import ProductPagePreview from "./preview-templates/ProductPagePreview";
-import IndexPagePreview from "./preview-templates/IndexPagePreview";
-
-// CMS.registerMediaLibrary(uploadcare);
-// CMS.registerMediaLibrary(cloudinary);
-
-CMS.registerPreviewTemplate("index", IndexPagePreview);
-CMS.registerPreviewTemplate("about", AboutPagePreview);
-CMS.registerPreviewTemplate("products", ProductPagePreview);
-CMS.registerPreviewTemplate("blog", BlogPostPreview);
+```sh
+npm run typecheck
+npm run lint
+PLAYWRIGHT_CHANNEL=chrome npm test
 ```
 
-Note: Don't forget to also remove them from `package.json` and `yarn.lock` / `package-lock.json` using `yarn` or `npm`. During the build netlify-cms-app will bundle the media libraries as well, having them removed will save you build time.
-Example:
+Tests expect the production server at `http://127.0.0.1:3000` (or `PLAYWRIGHT_BASE_URL`). Installed Google Chrome can be used as above; otherwise install Playwright Chromium with `npx playwright install chromium` and omit the channel variable. See `evidence/verification.md` for actual results and limits. The tests include narrow touch layouts, no JavaScript, reduced motion, graphics failure, motion controls and asset/metadata checks.
 
-```
-yarn remove netlify-cms-media-library-uploadcare
-```
+## Design and maintenance
 
-OR
+- `app/page.tsx`: all readable copy, semantic headings, page composition and contact links, rendered on the server.
+- `app/layout.tsx`: locally served fonts, title, description, canonical and social metadata.
+- `app/globals.css`: responsive composition, design tokens and focus/motion treatments.
+- `components/halo-scene.tsx`: progressive enhancement, motion preference, pause control and failure fallback.
+- `components/halo-engine.ts`: custom swept geometry, materials, lighting and finite scroll/pointer animation.
+- `public/halo-poster.webp` and its mobile variant: rendered views of the actual instrument, shown before graphics load and in static/failure modes.
+- `public/og-triphalo.jpg`: 1200 × 630 social artwork.
+- `public/studio-environment.bin.gz`: precomputed HDR studio reflections.
+- `scripts/bake-environment.mjs`: reproduce the local lighting asset without external imagery.
+- `scripts/capture-artwork.mjs`: rebuild poster and social image from the running local production preview. Requires installed Google Chrome.
+- `scripts/capture-review.mjs`: desktop/mobile evidence and signature-motion recording. Install the isolated encoder once with `npx playwright install ffmpeg`.
 
-```
-yarn remove netlify-cms-media-library-cloudinary
-```
+The aperture is true 3D, not a rotating image. Its asymmetrical ceramic profile surrounds a bronze reveal and amber light well. Native scrolling drives a roughly 25-degree alignment and a gradual increase in warmth. Pointer movement adds a restrained tilt. Rendering stops after settling, outside the viewport, while paused, or when the document is hidden. Reduced-motion preference avoids loading the 3D engine. Mobile uses a separate in-flow composition. Core text and email work without JavaScript or WebGL.
 
-## Getting Started (Without Netlify)
+## Migration scope
 
-```
-$ gatsby new [SITE_DIRECTORY_NAME] https://github.com/netlify-templates/gatsby-starter-netlify-cms/
-$ cd [SITE_DIRECTORY_NAME]
-$ npm run build
-$ npm run start
-```
+Base: `triphalo/triphalo`, `master`, commit `764ff359bfdd14b946f8cbbe8611c11c82adf25b`.
 
-### Setting up the CMS
+This feature branch replaces the Gatsby 4 / React 17 / Netlify CMS coffee-shop starter: its pages, blog, CMS/admin, images, Gatsby plugins, Netlify function/configuration and obsolete dependency tree. Repository history is preserved. The earlier local Vite experiment at `../website` is untouched. No connection between the old repository and the current Framer deployment is assumed.
 
-Follow the [Netlify CMS Quick Start Guide](https://www.netlifycms.org/docs/quick-start/#authentication) to set up authentication, and hosting for production.
+## Deployment and release boundary
 
-If you want use Netlify CMS locally, run the site in one terminal with `npm run start` and in another
-Terminal you can use `npx netlify-cms-proxy-server` which proxy requests so you'll be automatically logged
-in as a user on [http:localhost:3000/admin](http:localhost:3000/admin).
+The intended canonical remains `https://www.triphalo.com`, matching the current apex-to-www redirect. **No production release or domain cutover is authorised by this branch.** Current Framer production, DNS and mail must remain intact during review.
 
-## Debugging
+Read `evidence/deployment-discovery.md` before publication. Discovery found the existing Pro team but no TripHalo Vercel project. Vercel labels the first deployment of a new project Production even when preview is requested; this is the remaining authority gate. A legacy Netlify GitHub webhook also subscribes to branch pushes and pull requests, so no remote push or PR has been made.
 
-Windows users, who aren't using [WSL](https://docs.microsoft.com/en-us/windows/wsl/about), might encounter `node-gyp` errors when trying to npm install.
-To resolve, make sure that you have both Python 2.7 and the Visual C++ build environment installed.
+After explicit approval of the isolated Vercel bootstrap, create a `triphalo` project in the confirmed team and stage it without custom domains using the documented `--prod --skip-domain` flow; then upload this feature branch as a Preview and verify its environment and protection. Do not attach production domains or connect Git automatically during this preparation. Use an empty, non-sensitive bootstrap so the reviewed redesign remains a Preview deployment. Current team ID and commands are in the discovery report.
 
-```
-npm config set python python2.7
-npm install --global --production windows-build-tools
-```
+After the owner approves the final preview for release:
 
-[Full details here](https://www.npmjs.com/package/node-gyp "NPM node-gyp page").
+1. Resolve the legacy Netlify webhook’s destination and branch behaviour before pushing or enabling a Git integration. Keep `master` as the production branch.
+2. Produce a staged production build of the approved source, without assigning domains; verify it again because production promotion may rebuild a preview.
+3. Add both `www.triphalo.com` and `triphalo.com` to the confirmed project; configure apex → www. Obtain the project-specific DNS instructions from Vercel rather than guessing record targets.
+4. Change only the required web A/CNAME records. Preserve current nameservers and every MX/TXT/DKIM/DMARC mail record.
+5. Verify HTTPS, both domain routes, canonical, assets, social image and mailto on the public site. Retain the prior Framer web records for rollback.
 
-MacOS and WSL users who might also encounter some errors, check [node-gyp](https://github.com/nodejs/node-gyp) for more info. We recommend using the latest stable node version.
-
-## Purgecss
-
-This plugin uses [gatsby-plugin-purgecss](https://www.gatsbyjs.org/packages/gatsby-plugin-purgecss/) and [bulma](https://bulma.io/). The bulma builds are usually ~170K but reduced 90% by purgecss.
-
-# CONTRIBUTING
-
-Contributions are always welcome, no matter how large or small. Before contributing,
-please read the [code of conduct](CODE_OF_CONDUCT.md).
+The single mailto link uses the visitor’s configured mail client. Delivery of an email is not part of site verification.

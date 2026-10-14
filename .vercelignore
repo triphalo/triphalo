@@ -1,0 +1,9 @@
+.git
+evidence
+tests
+test-results
+playwright-report
+README.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+PULL_REQUEST_TEMPLATE.md

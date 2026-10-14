@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-10-14T09:19:24.846Z",
+  "status": "passed",
+  "test": "throttled touch mobile reaches content and contact",
+  "conditions": "Chrome emulation; 390 \u00d7 844 at DPR 3; 4\u00d7 CPU slowdown; 1.6 Mbps down / 0.75 Mbps up; 150 ms latency; local production server",
+  "rendering": "Chrome software WebGL via ANGLE SwiftShader; optimised production Next.js server on localhost",
+  "firstContentfulPaintMs": 644,
+  "domContentLoadedMs": 447.1,
+  "loadEventMs": 1551.2,
+  "checks": [
+    "Readable server-rendered content",
+    "Live scene ready",
+    "Native emulated touch swipe scrolls more than 300px",
+    "Contact visible and correct mailto address",
+    "No horizontal overflow at 390px"
+  ],
+  "limitations": [
+    "Emulated browser test, not physical phone or field Core Web Vitals",
+    "FCP and document load timings are not measurements of live-scene readiness or interaction latency"
+  ]
+}
