@@ -1,63 +1,52 @@
-# TripHalo — light, intelligence, experience
+# TripHalo
 
-A local one-page website for the independent technology and experience studio. A procedural network of light gathers into a circular halo; scrolling passes through it into an abstract landscape of people together. The website uses the approved wording, including two authorised paragraph refinements, with `mailto:hello@triphalo.com` as the only contact route.
+The approved one-page website for TripHalo, an independent technology and experience studio. A procedural neural halo opens onto a shared human landscape. The site uses the selected Mona Sans / IBM Plex Mono typography, a plain TripHalo wordmark and the approved copy in `lib/locked-copy.ts`. Email is the sole contact route.
 
-## Run locally
+The canonical production address is **https://www.triphalo.com**. Metadata, robots and sitemap use that address. The apex domain should redirect to `www`.
 
-Use Node 22 and npm. No environment variables or external services are required. Fonts and artwork are local.
+## Local development
+
+Use Node 22 and the committed npm lockfile. No environment variables or external services are required; fonts and artwork are local.
 
 ```sh
 npm ci
 npm run dev -- --port 4310
 ```
 
-Open <http://127.0.0.1:4310>.
-
-The homepage uses the selected Precision pairing: Mona Sans for the headline, body and plain `TripHalo` wordmark, with IBM Plex Mono for small details. The wordmark keeps the selected spacing and weight without a dot or altered letter treatment.
-
-Typography alternatives remain at <http://127.0.0.1:4310/type-study>. Switch between Precision, Humanist (Bricolage Grotesque / Source Sans 3), Editorial (Newsreader / IBM Plex Sans) and the original pairing. The comparison preserves the artwork and scroll position; its review panel can be minimised. Local font licences and provenance are in `public/fonts/type-study/`. The historical proposal in `docs/copy-proposal.md` records the two approved edits now applied: the final Belief paragraph and first Work paragraph. The first two Belief paragraphs and second Work paragraph remain unchanged.
-
-The approved neural-halo and human-landscape baseline is preserved in local commit `7d77204`. Later typography and control refinements are separate from that checkpoint.
-
-For the production build and local preview:
+Open <http://127.0.0.1:4310>. For a production build, stop the development server and run:
 
 ```sh
 npm run build
 npm run start -- --port 4310
 ```
 
-Only one server can use that port at a time. The current handoff uses the production server.
+## Verification
 
-## Verify and record
+With the local production server running:
 
 ```sh
 npm run typecheck
+npm run lint
 PLAYWRIGHT_BASE_URL=http://127.0.0.1:4310 PLAYWRIGHT_CHANNEL=chrome npx playwright test tests/home.spec.ts
 RESONANCE_URL=http://127.0.0.1:4310 npm run verify:resonance
 ```
 
-The verifier checks the locked words, navigation, desktop and mobile layouts, keyboard and touch controls, animated and paused frames, reduced motion, no-JavaScript content and browser errors. It also records real browser interactions and converts the recording to MP4 using locally installed `ffmpeg`. Pass `-- --no-record` to omit recording. Evidence is written to `evidence/resonance/`.
+The checks cover approved copy, navigation, desktop/mobile layouts, keyboard and touch interaction, pause, reduced motion, static fallbacks and browser errors. The verifier writes evidence to `evidence/resonance/` and records real interactions; local `ffmpeg` converts the recording to MP4. Add `-- --no-record` to omit recording.
 
-Installed Google Chrome is the default browser for the standalone verifier. The focused Playwright suite includes a WebGL-disabled fallback test. Earlier study tests are retained separately.
+## Release
 
-## Source map
+Review the release branch in a pull request, run the production build and browser checks, then deploy the reviewed revision through the linked Vercel project. Verify the actual deployment and public `www` homepage, canonical metadata, contact link, static assets and apex redirect after publication. A successful build alone does not confirm the public release.
 
-- `app/page.tsx` and `components/resonance-copy.tsx`: server-rendered copy and semantic page structure, shared with the typography comparison.
-- `app/type-study/` and `components/typography-study.tsx`: local typography comparison.
-- `app/resonance.css`: composition and responsive layouts; `app/typography.css`: shared selected and comparison type treatments.
-- `components/triphalo-wordmark.tsx` and `app/wordmark.css`: plain Mona Sans `TripHalo` wordmark.
-- `components/resonance-experience.tsx`: native section navigation, pointer/touch input, keyboard-accessible controls, pause and reduced-motion handling.
-- `components/resonance-engine.ts`: procedural neural halo, incoming light, perspective passage and scene transitions.
-- `components/human-landscape.ts`: procedural light-particle figures, terrain and horizon.
-- `lib/locked-copy.ts`: approved wording.
-- `app/layout.tsx`: local fonts and metadata.
+`.vercelignore` excludes local evidence, tests, reports, documentation and authoring scripts from the deployment upload. Required application source, public fonts, licences, icons and the current social image remain included. Dependency versions, the lockfile and the Vercel project association are managed separately from the website artwork.
 
-The artwork responds without explanatory overlays. Drag the halo to change its warmth, or focus it and use the left/right arrow keys. There is no separate spectrum slider. A discreet “Motion on/off” text control replaces the playback icon and freezes continuous motion. System reduced-motion preferences start the artwork still. Explicitly resuming opts into movement. Native page scrolling and anchors remain available in either state. Rendering suspends in hidden documents. Core content and contact remain available without JavaScript or WebGL.
+## Source and retained history
 
-No analytics, forms, chatbot, booking service, remote font requests or backend are included.
+- `app/page.tsx`, `components/resonance-copy.tsx` and `lib/locked-copy.ts`: page structure and approved wording.
+- `app/resonance.css`, `app/typography.css` and `app/wordmark.css`: layout and typography.
+- `components/resonance-experience.tsx`: navigation, direct interaction and motion preferences.
+- `components/resonance-engine.ts` and `components/human-landscape.ts`: procedural artwork.
+- `app/layout.tsx`, `app/robots.ts` and `app/sitemap.ts`: site metadata.
 
-## Scope and retained work
+The release exposes the approved homepage; `/study` and `/type-study` entrypoints are removed. The original studio checkout and Git history preserve those experiments. Historical components and notes remain for reference, and the old study test is archived under `tests/archive/`. Unused prototype posters, environment data and study imagery are omitted from this release.
 
-This direction replaces the homepage at `/`. Earlier studies remain at `/study` and `/studies/sculpture`, along with their source, assets and tests. The separate `../website` experiment is untouched. Previous project and deployment notes are preserved in `docs/previous-build-notes.md`.
-
-This is a local build. No source push, deployment, production-domain or DNS change has been performed. Production publication and domain changes require separate approval.
+Drag the halo or use its left/right arrow keys to tune the light. The discreet Motion on/off control pauses continuous movement; reduced-motion preferences start the scene still. Content and email remain available without JavaScript or WebGL. The website has no analytics, forms, booking service, chatbot or backend.

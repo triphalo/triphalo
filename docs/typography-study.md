@@ -1,5 +1,7 @@
 # TripHalo — typography and control refinement
 
+> Historical local comparison record. Precision is the selected homepage direction. The release omits `/study` and `/type-study`; their original working versions remain in the studio checkout and Git history. References to local comparison routes and earlier verification below describe that retained history.
+
 The approved neural-halo / shared-human-landscape baseline is saved in local commit `7d77204`.
 
 Precision has been selected and applied to the homepage at <http://127.0.0.1:4310/>. Compare the alternatives at <http://127.0.0.1:4310/type-study>. The original pairing is also available for reference. Choosing a direction changes only the comparison page, keeps the same canvas, and retains the reading position (font metrics can cause normal browser scroll anchoring within one line).

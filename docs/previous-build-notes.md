@@ -1,5 +1,7 @@
 # TripHalo studio
 
+> Historical prototype notes. The release removes the study routes and unused prototype assets. Use the root README for the current website and release process; the deployment instructions below describe an earlier project state.
+
 An independent technology and experience studio. A statically rendered Next.js one-page website with an original, live Three.js aperture and one enquiry route: `hello@triphalo.com`.
 
 ## Local development
