@@ -234,9 +234,12 @@ export function createHumanLandscape(): Group {
     const leftHip: XYZ = [-0.047, 0.51, 0.025];
     const rightHip: XYZ = [0.048, 0.505, -0.025];
     const leftKnee: XYZ = [-0.075 - phase * 0.045, 0.285, 0.035];
-    const rightKnee: XYZ = [0.083 + phase * 0.045, 0.27, -0.024];
+    // Let the child's leading leg step forward rather than converge at the knees.
+    const rightKnee: XYZ = variant === 1 ? [0.105, 0.282, -0.024]
+      : [0.083 + phase * 0.045, 0.27, -0.024];
     const leftAnkle: XYZ = [-0.135 - phase * 0.045, 0.045, 0.044];
-    const rightAnkle: XYZ = [0.15 + phase * 0.025, 0.035, -0.018];
+    const rightAnkle: XYZ = variant === 1 ? [0.175, 0.035, -0.018]
+      : [0.15 + phase * 0.025, 0.035, -0.018];
     limb(leftHip, leftKnee, 0.052, 0.035, 520);
     limb(leftKnee, leftAnkle, 0.036, 0.024, 420);
     limb(rightHip, rightKnee, 0.052, 0.035, 520);

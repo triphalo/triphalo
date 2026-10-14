@@ -344,7 +344,10 @@ export function createResonanceEngine(canvas:HTMLCanvasElement, options:{onReady
     pathMaterial.uniforms.uAge.value=time-latestPulse;
     pathMaterial.uniforms.uPressure.value=pressure;
     pathMaterial.uniforms.uReveal.value=reveal;
-    if(mobile){landscape.scale.setScalar(0.64);landscape.position.set(-1.03,mix(1.85,-1.15,smooth(progress-2)),0);}else{landscape.scale.setScalar(1);landscape.position.set(0,0,0);}
+    if(mobile){landscape.scale.setScalar(0.64);landscape.position.set(-1.03,mix(1.85,-1.15,smooth(progress-2)),0);}else{
+      // Keep the whole family in frame when a desktop preview is taller than it is wide.
+      landscape.scale.setScalar(Math.min(1,width/height/1.1));landscape.position.set(0,0,0);
+    }
     landscape.rotation.y=pointerX*active*0.007;
     if(typeof landscape.userData.update==="function")landscape.userData.update(time,progress,pointerX,pointerY);
     renderer.render(scene,camera);

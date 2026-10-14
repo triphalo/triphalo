@@ -1,3 +1,1 @@
 .r-wordmark { display: inline-block; white-space: nowrap; }
-.r-wordmark-o { display: inline-block; position: relative; letter-spacing: 0; }
-.r-wordmark-o::after { content: ""; position: absolute; width: .06em; height: .06em; right: .12em; top: .38em; border-radius: 50%; background: #b28a49; pointer-events: none; }

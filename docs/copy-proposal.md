@@ -1,8 +1,8 @@
-# TripHalo — copy proposal for review
+# TripHalo — historical copy proposal
 
-Proposed wording only. None of these edits has been applied to the website. The current column is copied from `lib/locked-copy.ts`.
+This table preserves the original proposal. Only the final Belief paragraph (Belief — 3) and first Work paragraph (Work — 1) were approved and are now applied in `lib/locked-copy.ts`. The first two Belief paragraphs and second Work paragraph retain their original wording. All other approved website wording and headlines remain unchanged.
 
-| Content | Current | Proposed |
+| Content | Original at proposal | Proposed |
 | --- | --- | --- |
 | Descriptor | Independent technology & experience studio | Independent technology & experience studio |
 | Opening headline | Intelligence in service of human experience. | Intelligence in service of human experience. |
@@ -17,4 +17,4 @@ Proposed wording only. None of these edits has been applied to the website. The 
 | Contact headline | Have something in mind? | Have something in mind? |
 | Contact address | hello@triphalo.com | hello@triphalo.com |
 
-The proposal removes repetition and makes responsibility explicit. It retains the opening, headlines, concrete human examples, the technology/travel connection and the email contact unchanged.
+The original proposal aimed to remove repetition and make responsibility explicit. The table remains historical evidence; only the two approved rows identified above have been applied.
