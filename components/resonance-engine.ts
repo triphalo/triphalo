@@ -83,7 +83,9 @@ const neuronVertex = /* glsl */ `
     vAlpha = uOpacity*(0.68+0.2*sin(aSeed*18.0+uTime*0.55));
     vAlpha *= mix(1.0,smoothstep(0.0,0.12,phase)*(1.0-smoothstep(0.86,1.0,phase))*mix(0.72,1.3,packet),travelling);
     vec4 mvPosition = modelViewMatrix*vec4(p,1.0);
-    float perspective = clamp(8.0/-mvPosition.z,0.3,4.0);
+    float eyeDepth = -mvPosition.z;
+    float perspective = clamp(8.0/max(eyeDepth,0.25),0.3,4.0);
+    vAlpha *= smoothstep(0.15,0.55,eyeDepth);
     gl_PointSize = min(27.0,aSize*uDpr*perspective*(1.0+proximity*0.6+pulse*0.5+uGather*0.2));
     gl_Position = projectionMatrix*mvPosition;
   }
@@ -255,7 +257,8 @@ export function createResonanceEngine(canvas:HTMLCanvasElement, options:{onReady
   let state:ResonanceState = {progress:0,pointerX:0,pointerY:0,active:false,pressed:false,paused:false,reducedMotion:window.matchMedia("(prefers-reduced-motion: reduce)").matches,tuning:0.18,pulse:0};
   let disposed=false, contextUnavailable=false, ready=false;
   let frame=0, frames=0, time=0, previousTime=0, pulseSlot=0;
-  let width=1,height=1,dpr=1, active=0, pressure=0, pointerX=0,pointerY=0;
+  let width=0,height=0,dpr=1, resizePending=true, forceResize=true;
+  let active=0, pressure=0, pointerX=0,pointerY=0;
   let renderer:WebGLRenderer;
   canvas.dataset.renderer="initialising";
   canvas.dataset.fallback="false";
@@ -303,27 +306,34 @@ export function createResonanceEngine(canvas:HTMLCanvasElement, options:{onReady
   landscape.add(pathLight);
   scene.add(landscape);
   const viewHeight=2*9*Math.tan(35*Math.PI/360);
+  const touchDevice=window.matchMedia("(pointer: coarse)").matches;
 
   function isStill(){return state.paused||state.reducedMotion;}
   function requestFrame(){if(!disposed&&!contextUnavailable&&!frame&&!document.hidden)frame=requestAnimationFrame(render);}
   function render(now:number){
     frame=0;if(disposed||contextUnavailable||document.hidden)return;
+    if(resizePending)applySize();
     const dt=previousTime?Math.min((now-previousTime)/1000,0.05):0;previousTime=now;
     const still=isStill();if(!still)time+=dt;
     const ease=still?1:1-Math.exp(-dt*7);
     pressure=mix(pressure,state.pressed?1:0,ease);
     if(!state.paused){active=mix(active,state.active?1:0,ease);pointerX=mix(pointerX,clamp(state.pointerX,-1,1),ease);pointerY=mix(pointerY,clamp(state.pointerY,-1,1),ease);}
     const progress=clamp(state.progress,0,3), mobile=width<760;
+    const safePassage=mobile||touchDevice;
     const gather=smooth(progress);
     const passage=smooth(progress-1);
-    const reveal=smooth((progress-1.35)/0.8);
-    const haloOpacity=1-smooth((progress-1.68)/0.32);
-    const x=mix(mobile?0.5:0.73,0.5,passage);
-    const y=mix(mobile?0.285:0.47,0.5,passage);
+    // Keep mobile figures anchored; dissolve them gently behind the reading passage.
+    const readingVeil=mobile?smooth((progress-1.82)/0.28)*(1-smooth((progress-2.35)/0.55)):0;
+    const reveal=smooth((progress-(mobile?1.25:1.35))/(mobile?0.6:0.8))*(1-readingVeil*0.8);
+    const mobileHaloTone=mobile?1-0.48*smooth(progress/0.8)*(1-smooth((progress-1.2)/0.8)):1;
+    const haloOpacity=(1-smooth((progress-1.68)/0.32))*mobileHaloTone;
     const ringRadius=mobile?width*0.345:Math.min(width*0.255,height*0.365);
+    const x=mix(mobile?0.5:0.73,0.5,passage);
+    const y=mix(mobile?Math.max(0.305,(120+ringRadius)/height):0.47,0.5,passage);
     const ringScale=ringRadius/height*viewHeight/1.18;
-    halo.group.position.set((x-0.5)*viewHeight*width/height,(0.5-y)*viewHeight,passage*10.3);
-    halo.group.scale.setScalar(ringScale*(1-pressure*0.045));
+    // Mobile expands the iris without taking its transparent layers through the camera.
+    halo.group.position.set((x-0.5)*viewHeight*width/height,(0.5-y)*viewHeight,passage*(safePassage?5.3:10.3));
+    halo.group.scale.setScalar(ringScale*(safePassage?1+passage*1.1:1)*(1-pressure*0.045));
     halo.group.rotation.set(0.07+pointerY*active*0.055,-0.07+pointerX*active*0.075,Math.sin(time*0.055)*0.015);
     halo.group.visible=haloOpacity>0.001;
     halo.uniforms.uTime.value=time;
@@ -344,7 +354,7 @@ export function createResonanceEngine(canvas:HTMLCanvasElement, options:{onReady
     pathMaterial.uniforms.uAge.value=time-latestPulse;
     pathMaterial.uniforms.uPressure.value=pressure;
     pathMaterial.uniforms.uReveal.value=reveal;
-    if(mobile){landscape.scale.setScalar(0.64);landscape.position.set(-1.03,mix(1.85,-1.15,smooth(progress-2)),0);}else{
+    if(mobile){landscape.scale.setScalar(0.64);landscape.position.set(-1.03,-0.52,0);}else{
       // Keep the whole family in frame when a desktop preview is taller than it is wide.
       landscape.scale.setScalar(Math.min(1,width/height/1.1));landscape.position.set(0,0,0);
     }
@@ -356,16 +366,25 @@ export function createResonanceEngine(canvas:HTMLCanvasElement, options:{onReady
     if(!ready){ready=true;options.onReady?.();}
     if(!still)requestFrame();
   }
-  function resize(){
-    if(disposed)return;
-    const bounds=canvas.getBoundingClientRect();width=Math.max(1,bounds.width||window.innerWidth);height=Math.max(1,bounds.height||window.innerHeight);
-    dpr=Math.min(window.devicePixelRatio||1,1.75);renderer.setPixelRatio(dpr);renderer.setSize(width,height,false);
+  function applySize(){
+    resizePending=false;
+    const bounds=canvas.getBoundingClientRect();
+    const nextWidth=Math.max(1,Math.round(bounds.width||window.innerWidth));
+    const nextHeight=Math.max(1,Math.round(bounds.height||window.innerHeight));
+    const compactDrawing=nextWidth<760||touchDevice;
+    const nextDpr=Math.min(window.devicePixelRatio||1,compactDrawing?1.5:1.75);
+    if(!forceResize&&width===nextWidth&&height===nextHeight&&dpr===nextDpr)return;
+    forceResize=false;width=nextWidth;height=nextHeight;dpr=nextDpr;
+    // One buffer resize, immediately followed by a draw in the same animation frame.
+    renderer.setDrawingBufferSize(width,height,dpr);
+    renderer.setClearColor(0xf1f0e9,compactDrawing?1:0);
     camera.aspect=width/height;camera.updateProjectionMatrix();halo.uniforms.uDpr.value=dpr;pathMaterial.uniforms.uDpr.value=dpr;
-    canvas.dataset.resolution=`${Math.round(width*dpr)}x${Math.round(height*dpr)}`;requestFrame();
+    canvas.dataset.resolution=`${Math.round(width*dpr)}x${Math.round(height*dpr)}`;
   }
+  function resize(){if(disposed)return;resizePending=true;requestFrame();}
   function visibilityChanged(){previousTime=0;if(document.hidden&&frame){cancelAnimationFrame(frame);frame=0;}else if(!document.hidden)requestFrame();}
   function contextLost(event:Event){event.preventDefault();contextUnavailable=true;ready=false;if(frame)cancelAnimationFrame(frame);frame=0;canvas.dataset.renderer="fallback";canvas.dataset.fallback="true";options.onReady?.();}
-  function contextRestored(){contextUnavailable=false;canvas.dataset.fallback="false";previousTime=0;resize();}
+  function contextRestored(){contextUnavailable=false;canvas.dataset.fallback="false";previousTime=0;forceResize=true;resize();}
   const observer=new ResizeObserver(resize);observer.observe(canvas);
   window.addEventListener("resize",resize);document.addEventListener("visibilitychange",visibilityChanged);
   canvas.addEventListener("webglcontextlost",contextLost);canvas.addEventListener("webglcontextrestored",contextRestored);resize();

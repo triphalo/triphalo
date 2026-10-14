@@ -130,3 +130,89 @@ test('mobile and narrow layouts keep the headline visible and email reachable wi
     }
   }
 });
+
+test('desktop and mobile headers expose only three section links and a working motion control', async ({ browser, baseURL }) => {
+  for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
+    const mobile = viewport.width < 760;
+    const context = await browser.newContext({ viewport, isMobile: mobile, hasTouch: mobile });
+    try {
+      const page = await context.newPage();
+      await page.goto(baseURL!);
+      const canvas = page.locator('canvas[data-ready="true"]');
+      await expect(canvas).toBeVisible();
+      const header = page.locator('header');
+      const links = header.getByRole('navigation', { name: 'Main navigation' }).getByRole('link');
+      await expect(links).toHaveCount(3);
+      expect(await links.evaluateAll(items => items.map(item => item.getAttribute('href')))).toEqual(['#belief', '#work', '#contact']);
+      await expect(header.getByRole('button')).toHaveCount(1);
+      await expect(page.locator('.r-controls, .r-chapter-nav, .r-chapter-count, .r-chapter-dots, .r-progress')).toHaveCount(0);
+      const targets = await header.locator('a, button').evaluateAll(items => items.map(item => {
+        const { x, y, width, height } = item.getBoundingClientRect();
+        return { x, y, width, height };
+      }));
+      for (const target of targets) {
+        expect(target.width).toBeGreaterThanOrEqual(44);
+        expect(target.height).toBeGreaterThanOrEqual(44);
+        expect(target.x).toBeGreaterThanOrEqual(0);
+        expect(target.x + target.width).toBeLessThanOrEqual(viewport.width);
+      }
+      if (mobile) {
+        expect(Math.abs(targets[0].y - targets[4].y)).toBeLessThan(1);
+        expect(targets[1].y).toBeGreaterThanOrEqual(targets[0].y + targets[0].height);
+      }
+      const pause = header.getByRole('button', { name: 'Motion on — pause animation', exact: true });
+      if (mobile) await pause.tap(); else await pause.click();
+      await expect(canvas).toHaveAttribute('data-paused', 'true');
+      const frozenFrames = await canvas.getAttribute('data-frames');
+      await page.waitForTimeout(200);
+      await expect(canvas).toHaveAttribute('data-frames', frozenFrames!);
+      const resume = header.getByRole('button', { name: 'Motion off — resume animation', exact: true });
+      if (mobile) await resume.tap(); else await resume.click();
+      await expect.poll(async () => Number(await canvas.getAttribute('data-frames'))).toBeGreaterThan(Number(frozenFrames));
+    } finally {
+      await context.close();
+    }
+  }
+});
+
+test('mobile resize notifications preserve the drawing buffer until its size changes', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  try {
+    const page = await context.newPage();
+    await page.goto(baseURL!);
+    const canvas = page.locator('canvas[data-ready="true"]');
+    await expect(canvas).toBeVisible();
+    await page.getByRole('button', { name: 'Motion on — pause animation', exact: true }).tap();
+    await expect(canvas).toHaveAttribute('data-paused', 'true');
+    const writes = await canvas.evaluate(async element => {
+      await document.fonts.ready;
+      const nextFrame = () => new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      await nextFrame(); await nextFrame();
+      let writes = 0;
+      const observer = new MutationObserver(records => { writes += records.length; });
+      observer.observe(element, { attributes: true, attributeFilter: ['width', 'height'] });
+      for (let i = 0; i < 20; i++) {
+        window.dispatchEvent(new Event('resize'));
+        await nextFrame();
+      }
+      await nextFrame(); await nextFrame();
+      writes += observer.takeRecords().length;
+      observer.disconnect();
+      return writes;
+    });
+    expect(writes).toBe(0);
+    const before = await canvas.evaluate(element => {
+      const drawingCanvas = element as HTMLCanvasElement;
+      return { width: drawingCanvas.width, height: drawingCanvas.height, frames: Number(drawingCanvas.dataset.frames) };
+    });
+    await page.setViewportSize({ width: 430, height: 900 });
+    await expect.poll(async () => canvas.evaluate(element => (element as HTMLCanvasElement).width)).not.toBe(before.width);
+    await expect.poll(async () => canvas.evaluate(element => (element as HTMLCanvasElement).height)).not.toBe(before.height);
+    await expect.poll(async () => Number(await canvas.getAttribute('data-frames'))).toBeGreaterThan(before.frames);
+    await expect(canvas).toHaveAttribute('data-renderer', 'webgl');
+    await expect(canvas).toHaveAttribute('data-rendered', 'true');
+    await expect(canvas).toBeVisible();
+  } finally {
+    await context.close();
+  }
+});
