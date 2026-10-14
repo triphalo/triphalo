@@ -58,7 +58,6 @@ export default function ResonanceExperience({ children, wordmark }: { children: 
         scene.current.progress = progress;
         engine.current?.update(scene.current);
         setChapter(Math.min(3, Math.round(progress)));
-        root.current?.style.setProperty("--journey", String(progress / 3));
         const mobile = window.innerWidth < 760;
         const segment = Math.min(2, Math.floor(progress));
         const t = progress - segment;
@@ -66,10 +65,13 @@ export default function ResonanceExperience({ children, wordmark }: { children: 
         const xs = [.73, .73, .65, .65];
         const ys = [.47, .47, .58, .58];
         const x = mobile ? .5 : xs[segment] + (xs[segment + 1] - xs[segment]) * eased;
-        const mobileYs = [.285, .285, .26, .75];
+        const artHeight = canvas.current?.getBoundingClientRect().height || window.innerHeight;
+        const mobileStart = Math.max(.305, (120 + window.innerWidth * .345) / artHeight);
+        const mobileYs = [mobileStart, mobileStart, .7, .7];
         const yPos = mobile ? mobileYs[segment] + (mobileYs[segment + 1] - mobileYs[segment]) * eased : ys[segment] + (ys[segment + 1] - ys[segment]) * eased;
         root.current?.style.setProperty("--halo-x", `${x * 100}%`);
         root.current?.style.setProperty("--halo-y", `${yPos * 100}%`);
+        root.current?.style.setProperty("--halo-y-factor", String(yPos));
       });
     };
     const onPointer = (event: PointerEvent) => {
@@ -95,11 +97,11 @@ export default function ResonanceExperience({ children, wordmark }: { children: 
   const changeTuning = (value: number) => { const next = Math.max(0, Math.min(100, value)); setTuning(next); update({ tuning: next / 100 }); };
   return <div ref={root} className="resonance" data-chapter={chapter} data-ready={ready} data-paused={paused} data-expanded={expanded}>
     <a className="r-skip" href="#main">Skip to content</a>
-    <noscript><style>{".r-controls,.r-halo-touch{display:none}.r-canvas{display:none}"}</style></noscript>
+    <noscript><style>{".r-pause,.r-halo-touch{display:none}.r-canvas{display:none}"}</style></noscript>
     <div className="r-atmosphere" aria-hidden="true" />
     <div className="r-artwork" aria-hidden="true"><div className="r-fallback"><div /><div /><div /></div><canvas ref={canvas} className="r-canvas" /></div>
     <div className="r-grain" aria-hidden="true" />
-    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home">{wordmark ?? <span>TripHalo</span>}</a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav></header>
+    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home">{wordmark ?? <span>TripHalo</span>}</a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav><button className="r-pause" onClick={toggleMotion} aria-label={paused ? "Motion off — resume animation" : "Motion on — pause animation"} aria-pressed={paused}>{paused ? "Motion off" : "Motion on"}</button></header>
     <button className="r-halo-touch" aria-label="Resonate" aria-keyshortcuts="ArrowLeft ArrowRight"
       onPointerEnter={() => update({ active: true })}
       onPointerLeave={() => { if (!held.current) update({ active: false }); }}
@@ -111,9 +113,5 @@ export default function ResonanceExperience({ children, wordmark }: { children: 
       onClick={() => { if (!dragOrigin.current.moved) update({ pulse: scene.current.pulse + 1 }); dragOrigin.current.moved = false; }}>
     </button>
     {children}
-    <div className="r-controls">
-      <nav className="r-chapter-nav" aria-label="Chapters"><span className="r-chapter-count" aria-hidden="true">0{chapter + 1}<span> / 04</span></span><div className="r-chapter-dots">{chapters.map((name, i) => <a key={name} href={`#${name.toLowerCase()}`} aria-label={`Go to ${name}`} aria-current={chapter === i ? "location" : undefined}><span /><span className="r-dot-label">{name}</span></a>)}</div></nav>
-      <button className="r-pause" onClick={toggleMotion} aria-label={paused ? "Motion off — resume animation" : "Motion on — pause animation"} aria-pressed={paused}>{paused ? "Motion off" : "Motion on"}</button>
-    </div><div className="r-progress" aria-hidden="true" />
   </div>;
 }
