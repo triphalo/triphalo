@@ -1,9 +1,18 @@
-# Project dependencies
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
-.cache/
-# Build directory
-public/
-static/admin/*.bundle.*
+node_modules/
+.next/
+out/
+.vercel/
+.env*
+*.tsbuildinfo
 .DS_Store
-yarn-error.log
+test-results/
+playwright-report/
+evidence/*.webm
+evidence/lighthouse*.html
+evidence/lighthouse*.json
+evidence/playwright-results/
+evidence/recordings/
+evidence/study-verification-report/
+evidence/study-verification-results/
+evidence/*.mp4
+!evidence/lighthouse-summary.json

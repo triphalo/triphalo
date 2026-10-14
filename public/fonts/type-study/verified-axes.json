@@ -1,0 +1,97 @@
+[
+  {
+    "filename": "bricolage-grotesque-latin-variable.woff2",
+    "woff2": true,
+    "axes": [
+      {
+        "tag": "opsz",
+        "min": 12,
+        "default": 96,
+        "max": 96
+      },
+      {
+        "tag": "wght",
+        "min": 200,
+        "default": 800,
+        "max": 800
+      },
+      {
+        "tag": "wdth",
+        "min": 75,
+        "default": 100,
+        "max": 100
+      }
+    ]
+  },
+  {
+    "filename": "ibm-plex-mono-latin-400.woff2",
+    "woff2": true,
+    "axes": []
+  },
+  {
+    "filename": "ibm-plex-sans-latin-variable.woff2",
+    "woff2": true,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100,
+        "default": 400,
+        "max": 700
+      },
+      {
+        "tag": "wdth",
+        "min": 75,
+        "default": 100,
+        "max": 100
+      }
+    ]
+  },
+  {
+    "filename": "mona-sans-latin-variable.woff2",
+    "woff2": true,
+    "axes": [
+      {
+        "tag": "wdth",
+        "min": 75,
+        "default": 100,
+        "max": 125
+      },
+      {
+        "tag": "wght",
+        "min": 200,
+        "default": 200,
+        "max": 900
+      }
+    ]
+  },
+  {
+    "filename": "newsreader-latin-variable.woff2",
+    "woff2": true,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 200,
+        "default": 400,
+        "max": 800
+      },
+      {
+        "tag": "opsz",
+        "min": 6,
+        "default": 18,
+        "max": 72
+      }
+    ]
+  },
+  {
+    "filename": "source-sans-3-latin-variable.woff2",
+    "woff2": true,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 200,
+        "default": 200,
+        "max": 900
+      }
+    ]
+  }
+]

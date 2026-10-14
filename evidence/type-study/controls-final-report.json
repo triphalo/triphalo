@@ -1,0 +1,194 @@
+{
+  "generatedAt": "2026-10-14T14:33:48.881Z",
+  "passed": 5,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Keyboard hide and reopen transfer focus to the visible control",
+      "status": "PASS",
+      "detail": {
+        "closedFocus": "Type options",
+        "openFocus": "selected typography option"
+      }
+    },
+    {
+      "name": "narrow precision: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 682.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 164.59375,
+          "y": 680,
+          "width": 74,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "intro": {
+          "x": 20,
+          "y": 575.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 140.625,
+          "height": 44
+        },
+        "motion": {
+          "x": 244.1875,
+          "y": 680,
+          "width": 55.8125,
+          "height": 44
+        },
+        "gapAfterChapters": 3.96875,
+        "gapBeforeMotion": 5.59375,
+        "note": "At320px the existing intro starts below the fold; a real wheel scroll brings it into the reading area above the fixed controls."
+      }
+    },
+    {
+      "name": "narrow humanist: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 712.40625,
+          "width": 232,
+          "height": 47.59375
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "intro": {
+          "x": 20,
+          "y": 605.40625,
+          "width": 232,
+          "height": 47.59375
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 128.9375,
+          "height": 44
+        },
+        "motion": {
+          "x": 256,
+          "y": 680,
+          "width": 44,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    },
+    {
+      "name": "narrow editorial: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 682.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "intro": {
+          "x": 20,
+          "y": 575.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 133.078125,
+          "height": 44
+        },
+        "motion": {
+          "x": 253.546875,
+          "y": 680,
+          "width": 46.453125,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    },
+    {
+      "name": "narrow baseline: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 711.90625,
+          "width": 232,
+          "height": 48.09375
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 289.375,
+          "width": 280,
+          "height": 190.5
+        },
+        "intro": {
+          "x": 20,
+          "y": 604.90625,
+          "width": 232,
+          "height": 48.09375
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 133.15625,
+          "height": 44
+        },
+        "motion": {
+          "x": 251.8125,
+          "y": 680,
+          "width": 48.1875,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    }
+  ],
+  "errors": []
+}

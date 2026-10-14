@@ -1,0 +1,726 @@
+{
+  "url": "http://127.0.0.1:4310/type-study",
+  "generatedAt": "2026-10-14T14:28:43.655Z",
+  "passed": 27,
+  "failed": 4,
+  "checks": [
+    {
+      "name": "All six study fonts load and decode",
+      "status": "PASS",
+      "detail": [
+        {
+          "name": "Study Mona",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Plex Mono",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Bricolage",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Source",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Newsreader",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Plex Sans",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "Comparison panel is visible and can collapse and reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "precision: selector retains canvas and scroll position",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "y": 1250,
+          "frames": 20,
+          "time": 0.85
+        },
+        "after": {
+          "y": 1250,
+          "frames": 24,
+          "time": 1.05,
+          "font": "\"Study Mona\", sans-serif"
+        }
+      }
+    },
+    {
+      "name": "precision: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 842.390625,
+          "height": 271.828125
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "precision: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "humanist: selector retains canvas and scroll position",
+      "status": "FAIL",
+      "error": "Scroll changed 1250 → 1245"
+    },
+    {
+      "name": "humanist: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 325.796875,
+          "width": 842.390625,
+          "height": 265.03125
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "humanist: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "editorial: selector retains canvas and scroll position",
+      "status": "FAIL",
+      "error": "Scroll changed 1250 → 1229"
+    },
+    {
+      "name": "editorial: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 842.390625,
+          "height": 286.546875
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "editorial: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline: selector retains canvas and scroll position",
+      "status": "FAIL",
+      "error": "Scroll changed 1250 → 1262"
+    },
+    {
+      "name": "baseline: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 829.4375,
+          "height": 302.234375
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "baseline: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile precision: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile precision: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile humanist: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile humanist: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile editorial: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 195.3125
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile editorial: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 195.3125
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile baseline: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 427.734375,
+          "width": 340,
+          "height": 152.515625
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile baseline: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 427.734375,
+          "width": 340,
+          "height": 152.515625
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow precision: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 559,
+          "width": 288,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "narrow precision: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow humanist: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 559,
+          "width": 288,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "narrow humanist: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow editorial: open panel avoids headline and captures comparison",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 559,
+          "width": 288,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "narrow editorial: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow baseline: open panel avoids headline and captures comparison",
+      "status": "FAIL",
+      "error": "Typography controls overlap headline"
+    },
+    {
+      "name": "narrow baseline: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 396.375,
+          "width": 280,
+          "height": 190.5
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "No browser or asset errors",
+      "status": "PASS"
+    }
+  ],
+  "fonts": [
+    {
+      "name": "Study Mona",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Plex Mono",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Bricolage",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Source",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Newsreader",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Plex Sans",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    }
+  ],
+  "errors": [],
+  "failedResponses": []
+}

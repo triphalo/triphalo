@@ -1,0 +1,76 @@
+@font-face { font-family: "Study Mona"; src: url("/fonts/type-study/mona-sans-latin-variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; font-style: normal; font-display: swap; }
+@font-face { font-family: "Study Plex Mono"; src: url("/fonts/type-study/ibm-plex-mono-latin-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Study Bricolage"; src: url("/fonts/type-study/bricolage-grotesque-latin-variable.woff2") format("woff2"); font-weight: 200 800; font-stretch: 75% 100%; font-style: normal; font-display: swap; }
+@font-face { font-family: "Study Source"; src: url("/fonts/type-study/source-sans-3-latin-variable.woff2") format("woff2"); font-weight: 200 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Study Newsreader"; src: url("/fonts/type-study/newsreader-latin-variable.woff2") format("woff2"); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Study Plex Sans"; src: url("/fonts/type-study/ibm-plex-sans-latin-variable.woff2") format("woff2"); font-weight: 100 700; font-style: normal; font-display: swap; }
+
+/* Shared typography for the selected direction and the local comparison. */
+.r-typography:not([data-direction="baseline"]) .resonance { font-family: var(--t-body), sans-serif; font-weight: 400; }
+.r-typography:not([data-direction="baseline"]) .r-opening h1,
+.r-typography:not([data-direction="baseline"]) .r-chapter h2,
+.r-typography:not([data-direction="baseline"]) .resonance em { font-family: var(--t-display), sans-serif; font-style: normal; font-weight: var(--t-weight); letter-spacing: var(--t-tracking); font-variation-settings: var(--t-axes); }
+.r-typography:not([data-direction="baseline"]) .resonance em { font-size: 1em; color: inherit; line-height: inherit; }
+.r-typography:not([data-direction="baseline"]) .r-opening h1 { font-size: clamp(60px, 6.05vw, 112px); line-height: 1.04; max-width: 65%; }
+.r-typography:not([data-direction="baseline"]) .r-opening h1 em { white-space: nowrap; }
+.r-typography:not([data-direction="baseline"]) .r-chapter h2 { font-size: clamp(46px, 4.5vw, 84px); line-height: 1.08; }
+.r-typography:not([data-direction="baseline"]) .r-contact h2 { font-size: clamp(76px, 7.3vw, 135px); }
+.r-typography:not([data-direction="baseline"]) .r-body-copy { font-size: 16px; line-height: 1.8; }
+.r-typography:not([data-direction="baseline"]) .r-body-copy .r-lead { font-size: 19px; line-height: 1.65; }
+.r-typography:not([data-direction="baseline"]) .r-eyebrow,
+.r-typography:not([data-direction="baseline"]) .r-section-label { font-family: var(--t-detail), sans-serif; letter-spacing: 1px; font-weight: 400; }
+.r-typography:not([data-direction="baseline"]) .r-header nav,
+.r-typography:not([data-direction="baseline"]) .r-controls,
+.r-typography:not([data-direction="baseline"]) .r-next { font-family: var(--t-detail), sans-serif; }
+.r-typography:not([data-direction="baseline"]) .r-brand { font-family: var(--t-logo), sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -1.4px; }
+
+.r-typography[data-direction="precision"] { --t-display: "Study Mona"; --t-body: "Study Mona"; --t-detail: "Study Plex Mono"; --t-logo: "Study Mona"; --t-weight: 480; --t-tracking: -.035em; --t-axes: "wdth" 90, "wght" 480; }
+.r-typography[data-direction="precision"] .r-brand { font-variation-settings: "wdth" 95, "wght" 620; }
+.r-typography[data-direction="precision"] .r-body-copy { font-size: 15px; }
+.r-typography[data-direction="precision"] .r-body-copy .r-lead { font-size: 18px; }
+.r-typography[data-direction="precision"] .r-header nav { font-size: 11px; }
+
+.r-typography[data-direction="humanist"] { --t-display: "Study Bricolage"; --t-body: "Study Source"; --t-detail: "Study Source"; --t-logo: "Study Bricolage"; --t-weight: 480; --t-tracking: -.04em; --t-axes: "opsz" 96, "wdth" 100, "wght" 480; }
+.r-typography[data-direction="humanist"] .r-opening h1 { font-size: clamp(60px, 5.9vw, 110px); }
+.r-typography[data-direction="humanist"] .r-brand { font-variation-settings: "opsz" 40, "wght" 650; letter-spacing: -1.1px; }
+.r-typography[data-direction="humanist"] .r-opening-foot > p { font-size: 16px; line-height: 1.7; }
+.r-typography[data-direction="humanist"] .r-eyebrow { font-size: 11px; letter-spacing: 1.7px; }
+.r-typography[data-direction="humanist"] .r-header nav { font-size: 14px; }
+
+.r-typography[data-direction="editorial"] { --t-display: "Study Newsreader"; --t-body: "Study Plex Sans"; --t-detail: "Study Plex Sans"; --t-logo: "Study Plex Sans"; --t-weight: 400; --t-tracking: -.035em; --t-axes: "opsz" 72, "wght" 400; }
+.r-typography[data-direction="editorial"] .r-opening h1 { font-size: clamp(66px, 6.7vw, 124px); line-height: .99; }
+.r-typography[data-direction="editorial"] .r-chapter h2 { font-size: clamp(52px, 5.2vw, 96px); line-height: 1.01; }
+.r-typography[data-direction="editorial"] .r-contact h2 { font-size: clamp(84px, 8.1vw, 150px); }
+.r-typography[data-direction="editorial"] .r-brand { font-weight: 500; letter-spacing: -.8px; }
+
+
+@media (min-width: 760px) and (max-width: 1100px) {
+  .r-typography:not([data-direction="baseline"]) .r-opening h1 { font-size: 6.4vw; }
+  .r-typography[data-direction="editorial"] .r-opening h1 { font-size: 7vw; }
+  .r-typography:not([data-direction="baseline"]) .r-body-copy { font-size: 14px; }
+  .r-typography:not([data-direction="baseline"]) .r-body-copy .r-lead { font-size: 16px; }
+  .r-typography:not([data-direction="baseline"]) .r-chapter h2 { font-size: 4.8vw; }
+}
+
+@media (max-width: 759px) {
+  .r-typography:not([data-direction="baseline"]) .r-brand { font-size: 26px; letter-spacing: -1.2px; }
+  .r-typography:not([data-direction="baseline"]) .r-header nav { font-size: 10px; gap: 18px; }
+  .r-typography:not([data-direction="baseline"]) .r-opening h1 { max-width: 100%; font-size: clamp(42px, 11.5vw, 80px); line-height: 1.04; }
+  .r-typography:not([data-direction="baseline"]) .r-opening h1 em { white-space: normal; }
+  .r-typography[data-direction="editorial"] .r-opening h1 { font-size: clamp(46px, 12.4vw, 88px); line-height: 1.01; }
+  .r-typography:not([data-direction="baseline"]) .r-opening-foot > p { font-size: 14px; }
+  .r-typography:not([data-direction="baseline"]) .r-chapter h2 { font-size: clamp(38px, 10.6vw, 64px); }
+  .r-typography:not([data-direction="baseline"]) .r-body-copy { font-size: 16px; }
+  .r-typography:not([data-direction="baseline"]) .r-body-copy .r-lead { font-size: 18px; }
+  .r-typography:not([data-direction="baseline"]) .r-contact h2 { font-size: clamp(54px, 14vw, 96px); }
+  .r-typography:not([data-direction="baseline"]) .r-descriptor { max-width: 270px; font-size: 9px; letter-spacing: 1px; }
+}
+
+@media (max-width: 370px) {
+  .r-typography:not([data-direction="baseline"]) .r-brand { font-size: 24px; }
+  .r-typography:not([data-direction="baseline"]) .r-header nav { gap: 12px; font-size: 9px; }
+  .r-typography:not([data-direction="baseline"]) .r-opening h1 { font-size: 39px; }
+  .r-typography[data-direction="editorial"] .r-opening h1 { font-size: 44px; }
+  .r-typography:not([data-direction="baseline"]) .r-chapter h2 { font-size: 35px; }
+  .r-typography:not([data-direction="baseline"]) .r-contact h2 { font-size: 50px; }
+}

@@ -1,0 +1,1041 @@
+{
+  "url": "http://127.0.0.1:4310/type-study",
+  "generatedAt": "2026-10-14T14:36:02.456Z",
+  "passed": 42,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All six study fonts load and decode",
+      "status": "PASS",
+      "detail": [
+        {
+          "name": "Study Mona",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Plex Mono",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Bricolage",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Source",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Newsreader",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        },
+        {
+          "name": "Study Plex Sans",
+          "count": 1,
+          "statuses": [
+            "loaded"
+          ],
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "Comparison panel is visible and can collapse and reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "precision: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 842.390625,
+          "height": 271.828125
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "precision: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "humanist: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 325.796875,
+          "width": 842.390625,
+          "height": 265.03125
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "humanist: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "editorial: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 842.390625,
+          "height": 286.546875
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "editorial: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline: desktop copy, readable layout and clean capture",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "height": 1000
+        },
+        "heading": {
+          "x": 72,
+          "y": 324,
+          "width": 829.4375,
+          "height": 302.234375
+        },
+        "controls": {
+          "x": 72,
+          "y": 919,
+          "width": 1296,
+          "height": 55
+        },
+        "panel": {
+          "x": 450,
+          "y": 865,
+          "width": 540,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "baseline: query selection survives reload",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile precision: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile humanist: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile editorial: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 195.3125
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile baseline: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 390,
+          "scrollWidth": 390,
+          "height": 844
+        },
+        "heading": {
+          "x": 25,
+          "y": 427.734375,
+          "width": 340,
+          "height": 152.515625
+        },
+        "controls": {
+          "x": 25,
+          "y": 781,
+          "width": 340,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 724,
+          "width": 358,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow precision: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow humanist: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow editorial: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow baseline: clean layout, copy and contact",
+      "status": "PASS",
+      "detail": {
+        "dimensions": {
+          "width": 320,
+          "scrollWidth": 320,
+          "height": 740
+        },
+        "heading": {
+          "x": 20,
+          "y": 396.375,
+          "width": 280,
+          "height": 190.5
+        },
+        "controls": {
+          "x": 20,
+          "y": 677,
+          "width": 280,
+          "height": 49
+        },
+        "panel": {
+          "x": 16,
+          "y": 620,
+          "width": 288,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "No browser or asset errors",
+      "status": "PASS"
+    },
+    {
+      "name": "precision: selector retains canvas and reading position within one text line",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "y": 1250,
+          "frames": 6,
+          "time": 0.15
+        },
+        "after": {
+          "y": 1250,
+          "frames": 10,
+          "time": 0.35
+        },
+        "deltaPx": 0,
+        "tolerancePx": 32
+      }
+    },
+    {
+      "name": "humanist: selector retains canvas and reading position within one text line",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "y": 1250,
+          "frames": 12,
+          "time": 0.433
+        },
+        "after": {
+          "y": 1245,
+          "frames": 18,
+          "time": 0.733
+        },
+        "deltaPx": -5,
+        "tolerancePx": 32
+      }
+    },
+    {
+      "name": "editorial: selector retains canvas and reading position within one text line",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "y": 1250,
+          "frames": 20,
+          "time": 0.833
+        },
+        "after": {
+          "y": 1229,
+          "frames": 26,
+          "time": 1.133
+        },
+        "deltaPx": -21,
+        "tolerancePx": 32
+      }
+    },
+    {
+      "name": "baseline: selector retains canvas and reading position within one text line",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "y": 1250,
+          "frames": 28,
+          "time": 1.233
+        },
+        "after": {
+          "y": 1262,
+          "frames": 34,
+          "time": 1.533
+        },
+        "deltaPx": 12,
+        "tolerancePx": 32
+      }
+    },
+    {
+      "name": "Keyboard hide and reopen transfer focus to the visible control",
+      "status": "PASS",
+      "detail": {
+        "closedFocus": "Type options",
+        "openFocus": "selected typography option"
+      }
+    },
+    {
+      "name": "Native Back to a no-query history entry resets Precision",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile precision: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile precision: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "button": {
+          "x": 200.796875,
+          "y": 784,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "intro": {
+          "x": 25,
+          "y": 708.21875,
+          "width": 275,
+          "height": 51.78125
+        },
+        "chapters": {
+          "x": 25,
+          "y": 784,
+          "width": 140.625,
+          "height": 44
+        },
+        "motion": {
+          "x": 309.1875,
+          "y": 784,
+          "width": 55.8125,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile humanist: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile humanist: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "button": {
+          "x": 200.796875,
+          "y": 784,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 139.875
+        },
+        "intro": {
+          "x": 25,
+          "y": 712.40625,
+          "width": 275,
+          "height": 47.59375
+        },
+        "chapters": {
+          "x": 25,
+          "y": 784,
+          "width": 128.9375,
+          "height": 44
+        },
+        "motion": {
+          "x": 321,
+          "y": 784,
+          "width": 44,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile editorial: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 195.3125
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile editorial: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "button": {
+          "x": 200.796875,
+          "y": 784,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 25,
+          "y": 411.546875,
+          "width": 340,
+          "height": 195.3125
+        },
+        "intro": {
+          "x": 25,
+          "y": 708.21875,
+          "width": 275,
+          "height": 51.78125
+        },
+        "chapters": {
+          "x": 25,
+          "y": 784,
+          "width": 133.078125,
+          "height": 44
+        },
+        "motion": {
+          "x": 318.546875,
+          "y": 784,
+          "width": 46.453125,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "mobile baseline: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 25,
+          "y": 427.734375,
+          "width": 340,
+          "height": 152.515625
+        },
+        "panel": {
+          "x": 16,
+          "y": 663,
+          "width": 358,
+          "height": 105
+        }
+      }
+    },
+    {
+      "name": "mobile baseline: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "button": {
+          "x": 200.796875,
+          "y": 784,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 25,
+          "y": 427.734375,
+          "width": 340,
+          "height": 152.515625
+        },
+        "intro": {
+          "x": 25,
+          "y": 711.90625,
+          "width": 275,
+          "height": 48.09375
+        },
+        "chapters": {
+          "x": 25,
+          "y": 784,
+          "width": 133.15625,
+          "height": 44
+        },
+        "motion": {
+          "x": 316.8125,
+          "y": 784,
+          "width": 48.1875,
+          "height": 44
+        }
+      }
+    },
+    {
+      "name": "narrow precision: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "panel": {
+          "x": 16,
+          "y": 594,
+          "width": 288,
+          "height": 70
+        }
+      }
+    },
+    {
+      "name": "narrow precision: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 682.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 164.59375,
+          "y": 680,
+          "width": 74,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "intro": {
+          "x": 20,
+          "y": 575.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 140.625,
+          "height": 44
+        },
+        "motion": {
+          "x": 244.1875,
+          "y": 680,
+          "width": 55.8125,
+          "height": 44
+        },
+        "gapAfterChapters": 3.96875,
+        "gapBeforeMotion": 5.59375,
+        "note": "At320px the existing intro starts below the fold; a real wheel scroll brings it into the reading area above the fixed controls."
+      }
+    },
+    {
+      "name": "narrow humanist: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "panel": {
+          "x": 16,
+          "y": 594,
+          "width": 288,
+          "height": 70
+        }
+      }
+    },
+    {
+      "name": "narrow humanist: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 712.40625,
+          "width": 232,
+          "height": 47.59375
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "intro": {
+          "x": 20,
+          "y": 605.40625,
+          "width": 232,
+          "height": 47.59375
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 128.9375,
+          "height": 44
+        },
+        "motion": {
+          "x": 256,
+          "y": 680,
+          "width": 44,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    },
+    {
+      "name": "narrow editorial: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 20,
+          "y": 380.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "panel": {
+          "x": 16,
+          "y": 594,
+          "width": 288,
+          "height": 70
+        }
+      }
+    },
+    {
+      "name": "narrow editorial: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 682.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 177.75
+        },
+        "intro": {
+          "x": 20,
+          "y": 575.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 133.078125,
+          "height": 44
+        },
+        "motion": {
+          "x": 253.546875,
+          "y": 680,
+          "width": 46.453125,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    },
+    {
+      "name": "narrow baseline: expanded drawer leaves the complete headline clear",
+      "status": "PASS",
+      "detail": {
+        "heading": {
+          "x": 20,
+          "y": 396.375,
+          "width": 280,
+          "height": 190.5
+        },
+        "panel": {
+          "x": 16,
+          "y": 594,
+          "width": 288,
+          "height": 70
+        }
+      }
+    },
+    {
+      "name": "narrow baseline: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 711.90625,
+          "width": 232,
+          "height": 48.09375
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 157.390625,
+          "y": 680,
+          "width": 82,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 289.375,
+          "width": 280,
+          "height": 190.5
+        },
+        "intro": {
+          "x": 20,
+          "y": 604.90625,
+          "width": 232,
+          "height": 48.09375
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 133.15625,
+          "height": 44
+        },
+        "motion": {
+          "x": 251.8125,
+          "y": 680,
+          "width": 48.1875,
+          "height": 44
+        },
+        "note": "At320px the intro starts below the fold on the existing homepage; a real wheel scroll brings it above the fixed control band before checking legibility."
+      }
+    },
+    {
+      "name": "Follow-up has no browser or asset errors",
+      "status": "PASS"
+    }
+  ],
+  "fonts": [
+    {
+      "name": "Study Mona",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Plex Mono",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Bricolage",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Source",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Newsreader",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    },
+    {
+      "name": "Study Plex Sans",
+      "count": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "ready": true
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "verificationNote": "Unchanged font, desktop, URL and content checks retained from the initial run. Final drawer, focus, Back and reading-position checks verified in targeted follow-ups. At320px the existing intro starts below the fold and is verified readable after real wheel scrolling. Reading-position tolerance is one32px text line; exact deltas recorded."
+}

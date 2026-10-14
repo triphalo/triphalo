@@ -1,0 +1,13 @@
+{
+  "source": "Playwright HTML reporter",
+  "stats": {
+    "total": 17,
+    "expected": 17,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "conditions": "Installed Chrome; 1 worker; ANGLE SwiftShader; local production Next.js server; no concurrent Lighthouse or parent capture runs",
+  "visibilityLimit": "Document-hidden handling exercised with simulated visibilitychange; real tab-background visibility not verified by this automation"
+}

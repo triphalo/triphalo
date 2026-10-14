@@ -1,0 +1,260 @@
+{
+  "url": "http://127.0.0.1:4310",
+  "generatedAt": "2026-10-14T14:04:33.284Z",
+  "browser": "Chromium (chrome)",
+  "checks": [
+    {
+      "name": "Desktop homepage and engine render",
+      "status": "PASS",
+      "durationMs": 5330
+    },
+    {
+      "name": "All locked copy, headings and sole email contact",
+      "status": "PASS",
+      "durationMs": 65,
+      "detail": {
+        "lockedCopyFragments": 12,
+        "emailLinks": 1
+      }
+    },
+    {
+      "name": "Desktop has no horizontal overflow",
+      "status": "PASS",
+      "durationMs": 1,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "name": "Motion is visible before scrolling and pause freezes the artwork",
+      "status": "PASS",
+      "durationMs": 6411,
+      "detail": {
+        "moving1": "680e824d93d30400b66864fdaa3bb75dd3c58f2a8eb406222ab633e46e1d4d86",
+        "moving2": "824c50919a87ff2a7ef65e103296a31967870eec35dcbd27a6ac2052d4f4698b",
+        "paused1": "15e583c0cf2e2846764d6616b87436338792fd3d2ccc5784e521c9f207d449ca",
+        "paused2": "15e583c0cf2e2846764d6616b87436338792fd3d2ccc5784e521c9f207d449ca"
+      }
+    },
+    {
+      "name": "Keyboard tuning and Resonate interaction",
+      "status": "PASS",
+      "durationMs": 13
+    },
+    {
+      "name": "Desktop #belief navigation",
+      "status": "PASS",
+      "durationMs": 1618
+    },
+    {
+      "name": "Desktop #work navigation",
+      "status": "PASS",
+      "durationMs": 1799
+    },
+    {
+      "name": "Desktop #contact navigation",
+      "status": "PASS",
+      "durationMs": 1782
+    },
+    {
+      "name": "Desktop #opening navigation",
+      "status": "PASS",
+      "durationMs": 1914
+    },
+    {
+      "name": "Continuous scrolling changes the rendered story across chapters",
+      "status": "PASS",
+      "durationMs": 10514,
+      "detail": [
+        {
+          "target": "opening",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "436",
+            "time": "11.949",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.190",
+            "pulse": "1",
+            "progress": "0.000",
+            "scenePhase": "coalescence",
+            "landscapeOpacity": "0.000",
+            "ringDepth": "0.000",
+            "ready": "true"
+          },
+          "pixels": "e03fd104a2237d4b3d5e9b5b1d466e57d5368d64451a9d984210c0f270663640"
+        },
+        {
+          "target": "belief",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "512",
+            "time": "14.316",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.190",
+            "pulse": "1",
+            "progress": "1.000",
+            "scenePhase": "passage",
+            "landscapeOpacity": "0.000",
+            "ringDepth": "0.000",
+            "ready": "true"
+          },
+          "pixels": "24d252fb141de2045e221651e44df83a633a62e420f91d34bb50a1074450971e"
+        },
+        {
+          "target": "work",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "590",
+            "time": "16.816",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.190",
+            "pulse": "1",
+            "progress": "2.000",
+            "scenePhase": "experience",
+            "landscapeOpacity": "0.908",
+            "ringDepth": "10.300",
+            "ready": "true"
+          },
+          "pixels": "07143a652c912953cdc81aa0575362edda6a2e83166c25124066dd59acb62d78"
+        },
+        {
+          "target": "contact",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "668",
+            "time": "19.399",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.190",
+            "pulse": "1",
+            "progress": "3.000",
+            "scenePhase": "experience",
+            "landscapeOpacity": "1.000",
+            "ringDepth": "10.300",
+            "ready": "true"
+          },
+          "pixels": "98ec7b9290be4ab114520044bdefcee370a4e5a8ab5185acdaf9be5a1add3573"
+        }
+      ]
+    },
+    {
+      "name": "Keyboard skip link reaches page content",
+      "status": "PASS",
+      "durationMs": 598,
+      "detail": {
+        "hash": "#main",
+        "targetExists": true,
+        "activeId": "main"
+      }
+    },
+    {
+      "name": "mobile 390×844 opening, copy and layout",
+      "status": "PASS",
+      "durationMs": 1153
+    },
+    {
+      "name": "mobile motion and tuning touch controls",
+      "status": "PASS",
+      "durationMs": 173
+    },
+    {
+      "name": "mobile #belief navigation",
+      "status": "PASS",
+      "durationMs": 1174
+    },
+    {
+      "name": "mobile #work navigation",
+      "status": "PASS",
+      "durationMs": 1142
+    },
+    {
+      "name": "mobile #contact navigation",
+      "status": "PASS",
+      "durationMs": 1142
+    },
+    {
+      "name": "mobile #opening navigation",
+      "status": "PASS",
+      "durationMs": 1152
+    },
+    {
+      "name": "narrow 320×740 opening, copy and layout",
+      "status": "PASS",
+      "durationMs": 1119
+    },
+    {
+      "name": "narrow motion and tuning touch controls",
+      "status": "PASS",
+      "durationMs": 178
+    },
+    {
+      "name": "narrow #belief navigation",
+      "status": "PASS",
+      "durationMs": 1163
+    },
+    {
+      "name": "narrow #work navigation",
+      "status": "PASS",
+      "durationMs": 1129
+    },
+    {
+      "name": "narrow #contact navigation",
+      "status": "PASS",
+      "durationMs": 1117
+    },
+    {
+      "name": "narrow #opening navigation",
+      "status": "PASS",
+      "durationMs": 1122
+    },
+    {
+      "name": "Reduced motion starts paused and remains visually stable",
+      "status": "PASS",
+      "durationMs": 3923
+    },
+    {
+      "name": "Core content and contact survive without JavaScript",
+      "status": "PASS",
+      "durationMs": 1255
+    },
+    {
+      "name": "Real browser interaction recording",
+      "status": "PASS",
+      "durationMs": 38192,
+      "detail": {
+        "webm": "/Users/jackharris/triphalo/studio/evidence/resonance/triphalo-interactions.webm",
+        "mp4": "/Users/jackharris/triphalo/studio/evidence/resonance/triphalo-interactions.mp4"
+      }
+    },
+    {
+      "name": "No browser exceptions, console errors or failed network responses",
+      "status": "PASS",
+      "durationMs": 1
+    }
+  ],
+  "passed": 27,
+  "failed": 0,
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedResponses": []
+}

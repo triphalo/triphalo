@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-14T10:14:01.140Z",
+  "target": "http://127.0.0.1:3000/",
+  "status": 200,
+  "title": "TripHalo | Technology & Experience Studio",
+  "heading": "Intelligence in service of human experience.",
+  "canonical": "https://www.triphalo.com",
+  "enquiry": true,
+  "originalOpening": true,
+  "result": "LOCAL PASS",
+  "scope": "Read-only HTTP/SSR homepage smoke check against final local production server; not a full homepage regression suite"
+}
