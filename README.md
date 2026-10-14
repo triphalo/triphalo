@@ -13,6 +13,10 @@ npm run dev -- --port 4310
 
 Open <http://127.0.0.1:4310>.
 
+Typography options are at <http://127.0.0.1:4310/type-study>. Switch between Precision (Mona Sans / IBM Plex Mono), Humanist (Bricolage Grotesque / Source Sans 3), Editorial (Newsreader / IBM Plex Sans) and the current pairing. The comparison preserves the artwork and scroll position; its review panel can be minimised. These are proposals, not a selected replacement for the homepage typography. Local font licences and provenance are in `public/fonts/type-study/`.
+
+The approved neural-halo and human-landscape baseline is preserved in local commit `7d77204`. Later typography and control refinements are separate from that checkpoint.
+
 For the production build and local preview:
 
 ```sh
@@ -36,7 +40,8 @@ Installed Google Chrome is the default browser for the standalone verifier. The 
 
 ## Source map
 
-- `app/page.tsx`: server-rendered copy and semantic page structure.
+- `app/page.tsx` and `components/resonance-copy.tsx`: server-rendered copy and semantic page structure, shared with the typography comparison.
+- `app/type-study/` and `components/typography-study.tsx`: local typography and halo-wordmark proposals.
 - `app/resonance.css`: current composition, local typography and responsive layouts.
 - `components/resonance-experience.tsx`: native section navigation, pointer/touch input, keyboard-accessible controls, pause and reduced-motion handling.
 - `components/resonance-engine.ts`: procedural neural halo, incoming light, perspective passage and scene transitions.
@@ -44,7 +49,7 @@ Installed Google Chrome is the default browser for the standalone verifier. The 
 - `lib/locked-copy.ts`: approved wording.
 - `app/layout.tsx`: local fonts and metadata.
 
-The artwork responds without explanatory overlays. A small spectrum control changes its warmth; the pause control freezes continuous motion. System reduced-motion preferences start the artwork still. Explicitly choosing Resume opts into movement. Native page scrolling and anchors remain available in either state. Rendering suspends in hidden documents. Core content and contact remain available without JavaScript or WebGL.
+The artwork responds without explanatory overlays. Drag the halo to change its warmth, or focus it and use the left/right arrow keys. There is no separate spectrum slider. A discreet “Motion on/off” text control replaces the playback icon and freezes continuous motion. System reduced-motion preferences start the artwork still. Explicitly resuming opts into movement. Native page scrolling and anchors remain available in either state. Rendering suspends in hidden documents. Core content and contact remain available without JavaScript or WebGL.
 
 No analytics, forms, chatbot, booking service, remote font requests or backend are included.
 

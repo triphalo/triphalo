@@ -1,0 +1,251 @@
+{
+  "url": "http://127.0.0.1:4310",
+  "generatedAt": "2026-10-14T14:28:44.076Z",
+  "browser": "Chromium (chrome)",
+  "checks": [
+    {
+      "name": "Desktop homepage and engine render",
+      "status": "PASS",
+      "durationMs": 4847
+    },
+    {
+      "name": "All locked copy, headings and sole email contact",
+      "status": "PASS",
+      "durationMs": 45,
+      "detail": {
+        "lockedCopyFragments": 12,
+        "emailLinks": 1
+      }
+    },
+    {
+      "name": "Desktop has no horizontal overflow",
+      "status": "PASS",
+      "durationMs": 1,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "name": "Motion is visible before scrolling and pause freezes the artwork",
+      "status": "PASS",
+      "durationMs": 6752,
+      "detail": {
+        "moving1": "0d9b182b6dbf17bc3b03cb27f5359854f3195a4235eb8d646b02cf346a086776",
+        "moving2": "7cc23f8b3cafa2a983004b0885d0495583b138a6701535789d4287c2408cba28",
+        "paused1": "7977bfa9df910bc7040004d1216264dc8a2d63ba0e81f72e86e79f2db7eaf20a",
+        "paused2": "7977bfa9df910bc7040004d1216264dc8a2d63ba0e81f72e86e79f2db7eaf20a"
+      }
+    },
+    {
+      "name": "Keyboard tuning and Resonate interaction",
+      "status": "PASS",
+      "durationMs": 219
+    },
+    {
+      "name": "Desktop #belief navigation",
+      "status": "PASS",
+      "durationMs": 1694
+    },
+    {
+      "name": "Desktop #work navigation",
+      "status": "PASS",
+      "durationMs": 1851
+    },
+    {
+      "name": "Desktop #contact navigation",
+      "status": "PASS",
+      "durationMs": 1925
+    },
+    {
+      "name": "Desktop #opening navigation",
+      "status": "PASS",
+      "durationMs": 2211
+    },
+    {
+      "name": "Continuous scrolling changes the rendered story across chapters",
+      "status": "PASS",
+      "durationMs": 11825,
+      "detail": [
+        {
+          "target": "opening",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "275",
+            "time": "10.600",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.230",
+            "pulse": "1",
+            "progress": "0.000",
+            "scenePhase": "coalescence",
+            "landscapeOpacity": "0.000",
+            "ringDepth": "0.000",
+            "ready": "true"
+          },
+          "pixels": "be3a45104571b081265d088df447892e165641a096e9cf4270c2df6012c5f7cd"
+        },
+        {
+          "target": "belief",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "343",
+            "time": "13.166",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.230",
+            "pulse": "1",
+            "progress": "1.000",
+            "scenePhase": "passage",
+            "landscapeOpacity": "0.000",
+            "ringDepth": "0.000",
+            "ready": "true"
+          },
+          "pixels": "92f9394deb2b83d23fbf60ca0e616f07e985bf0394700de6e60ea68b6570870c"
+        },
+        {
+          "target": "work",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "403",
+            "time": "15.549",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.230",
+            "pulse": "1",
+            "progress": "2.000",
+            "scenePhase": "experience",
+            "landscapeOpacity": "0.908",
+            "ringDepth": "10.300",
+            "ready": "true"
+          },
+          "pixels": "2163cf11aef862bdf3ef50a296082fc99a8ce36703aa28116f8dcb05a755ed0a"
+        },
+        {
+          "target": "contact",
+          "state": {
+            "renderer": "webgl",
+            "fallback": "false",
+            "engine": "three.js neural light",
+            "resolution": "1440x1000",
+            "rendered": "true",
+            "frames": "445",
+            "time": "17.499",
+            "paused": "false",
+            "reducedMotion": "false",
+            "tuning": "0.230",
+            "pulse": "1",
+            "progress": "3.000",
+            "scenePhase": "experience",
+            "landscapeOpacity": "1.000",
+            "ringDepth": "10.300",
+            "ready": "true"
+          },
+          "pixels": "5ed817059bcf35616e635bda36c6c994651252d64f6ce1d9254ae79f6ee95bab"
+        }
+      ]
+    },
+    {
+      "name": "Keyboard skip link reaches page content",
+      "status": "PASS",
+      "durationMs": 528,
+      "detail": {
+        "hash": "#main",
+        "targetExists": true,
+        "activeId": "main"
+      }
+    },
+    {
+      "name": "mobile 390×844 opening, copy and layout",
+      "status": "PASS",
+      "durationMs": 1358
+    },
+    {
+      "name": "mobile motion, direct touch tuning and resonance",
+      "status": "PASS",
+      "durationMs": 659
+    },
+    {
+      "name": "mobile #belief navigation",
+      "status": "PASS",
+      "durationMs": 1166
+    },
+    {
+      "name": "mobile #work navigation",
+      "status": "PASS",
+      "durationMs": 1133
+    },
+    {
+      "name": "mobile #contact navigation",
+      "status": "PASS",
+      "durationMs": 1123
+    },
+    {
+      "name": "mobile #opening navigation",
+      "status": "PASS",
+      "durationMs": 1118
+    },
+    {
+      "name": "narrow 320×740 opening, copy and layout",
+      "status": "PASS",
+      "durationMs": 1205
+    },
+    {
+      "name": "narrow motion, direct touch tuning and resonance",
+      "status": "PASS",
+      "durationMs": 625
+    },
+    {
+      "name": "narrow #belief navigation",
+      "status": "PASS",
+      "durationMs": 1139
+    },
+    {
+      "name": "narrow #work navigation",
+      "status": "PASS",
+      "durationMs": 1102
+    },
+    {
+      "name": "narrow #contact navigation",
+      "status": "PASS",
+      "durationMs": 1102
+    },
+    {
+      "name": "narrow #opening navigation",
+      "status": "PASS",
+      "durationMs": 1099
+    },
+    {
+      "name": "Reduced motion starts paused and remains visually stable",
+      "status": "PASS",
+      "durationMs": 3861
+    },
+    {
+      "name": "Core content and contact survive without JavaScript",
+      "status": "PASS",
+      "durationMs": 1220
+    },
+    {
+      "name": "No browser exceptions, console errors or failed network responses",
+      "status": "PASS",
+      "durationMs": 0
+    }
+  ],
+  "passed": 26,
+  "failed": 0,
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedResponses": []
+}

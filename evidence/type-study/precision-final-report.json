@@ -1,0 +1,52 @@
+{
+  "url": "http://127.0.0.1:4310/type-study?look=precision",
+  "generatedAt": "2026-10-14T14:36:02.452Z",
+  "checks": [
+    {
+      "name": "narrow precision: minimised control avoids text and retains accessible controls",
+      "status": "PASS",
+      "detail": {
+        "initialIntro": {
+          "x": 20,
+          "y": 682.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "scrollMovement": 107,
+        "button": {
+          "x": 164.59375,
+          "y": 680,
+          "width": 74,
+          "height": 44
+        },
+        "heading": {
+          "x": 20,
+          "y": 273.1875,
+          "width": 280,
+          "height": 162.1875
+        },
+        "intro": {
+          "x": 20,
+          "y": 575.328125,
+          "width": 232,
+          "height": 77.671875
+        },
+        "chapters": {
+          "x": 20,
+          "y": 680,
+          "width": 140.625,
+          "height": 44
+        },
+        "motion": {
+          "x": 244.1875,
+          "y": 680,
+          "width": 55.8125,
+          "height": 44
+        },
+        "gapAfterChapters": 3.96875,
+        "gapBeforeMotion": 5.59375,
+        "note": "At320px the existing intro starts below the fold; a real wheel scroll brings it into the reading area above the fixed controls."
+      }
+    }
+  ]
+}

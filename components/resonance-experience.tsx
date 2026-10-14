@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ResonanceState } from "./resonance-engine";
 const chapters = ["Opening", "Belief", "Work", "Contact"];
 const initialState: ResonanceState = { progress: 0, pointerX: 0, pointerY: 0, active: false, pressed: false, paused: true, reducedMotion: false, tuning: .18, pulse: 0 };
-export default function ResonanceExperience({ children }: { children: React.ReactNode }) {
+export default function ResonanceExperience({ children, wordmark }: { children: React.ReactNode; wordmark?: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const engine = useRef<ReturnType<typeof import("./resonance-engine").createResonanceEngine> | null>(null);
@@ -92,28 +92,28 @@ export default function ResonanceExperience({ children }: { children: React.Reac
     };
   }, []);
   const toggleMotion = () => { const next = !paused; setPaused(next); update({ paused: next, reducedMotion: next ? scene.current.reducedMotion : false }); document.documentElement.dataset.resonanceMotion = next ? "paused" : "playing"; };
-  const changeTuning = (value: number) => { setTuning(value); update({ tuning: value / 100 }); };
+  const changeTuning = (value: number) => { const next = Math.max(0, Math.min(100, value)); setTuning(next); update({ tuning: next / 100 }); };
   return <div ref={root} className="resonance" data-chapter={chapter} data-ready={ready} data-paused={paused} data-expanded={expanded}>
     <a className="r-skip" href="#main">Skip to content</a>
     <noscript><style>{".r-controls,.r-halo-touch{display:none}.r-canvas{display:none}"}</style></noscript>
     <div className="r-atmosphere" aria-hidden="true" />
     <div className="r-artwork" aria-hidden="true"><div className="r-fallback"><div /><div /><div /></div><canvas ref={canvas} className="r-canvas" /></div>
     <div className="r-grain" aria-hidden="true" />
-    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home"><span>TripHalo</span></a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav></header>
-    <button className="r-halo-touch" aria-label="Resonate"
+    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home">{wordmark ?? <span>TripHalo</span>}</a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav></header>
+    <button className="r-halo-touch" aria-label="Resonate" aria-keyshortcuts="ArrowLeft ArrowRight"
       onPointerEnter={() => update({ active: true })}
       onPointerLeave={() => { if (!held.current) update({ active: false }); }}
       onPointerDown={event => { held.current = true; dragOrigin.current = { x: event.clientX, tuning, moved: false }; event.currentTarget.setPointerCapture(event.pointerId); setExpanded(true); update({ pressed: true, active: true }); }}
       onPointerMove={event => { if (!held.current) return; const distance = event.clientX - dragOrigin.current.x; if (Math.abs(distance) > 8) dragOrigin.current.moved = true; if (dragOrigin.current.moved) changeTuning(Math.round(Math.max(0, Math.min(100, dragOrigin.current.tuning + distance / 3)))); }}
       onPointerUp={() => { held.current = false; setExpanded(false); update({ pressed: false }); }}
       onPointerCancel={() => { held.current = false; setExpanded(false); update({ pressed: false, active: false }); }}
+      onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); changeTuning(Math.round(scene.current.tuning * 100) + (event.key === "ArrowRight" ? 5 : -5)); } }}
       onClick={() => { if (!dragOrigin.current.moved) update({ pulse: scene.current.pulse + 1 }); dragOrigin.current.moved = false; }}>
     </button>
     {children}
     <div className="r-controls">
       <nav className="r-chapter-nav" aria-label="Chapters"><span className="r-chapter-count" aria-hidden="true">0{chapter + 1}<span> / 04</span></span><div className="r-chapter-dots">{chapters.map((name, i) => <a key={name} href={`#${name.toLowerCase()}`} aria-label={`Go to ${name}`} aria-current={chapter === i ? "location" : undefined}><span /><span className="r-dot-label">{name}</span></a>)}</div></nav>
-      <div className="r-tuner"><span className="r-spectrum-dot r-spectrum-warm" aria-hidden="true" /><input id="halo-tuning" type="range" min="0" max="100" value={tuning} onChange={event => changeTuning(Number(event.target.value))} aria-label="Tune the halo" /><span className="r-spectrum-dot r-spectrum-cool" aria-hidden="true" /></div>
-      <button className="r-pause" onClick={toggleMotion} aria-label={paused ? "Resume motion" : "Pause motion"} title={paused ? "Resume motion" : "Pause motion"} aria-pressed={paused}>{paused ? <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m5 3 7 5-7 5V3Z" stroke="currentColor" /></svg> : <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" /></svg>}</button>
+      <button className="r-pause" onClick={toggleMotion} aria-label={paused ? "Motion off — resume animation" : "Motion on — pause animation"} aria-pressed={paused}>{paused ? "Motion off" : "Motion on"}</button>
     </div><div className="r-progress" aria-hidden="true" />
   </div>;
 }

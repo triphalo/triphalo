@@ -8,7 +8,7 @@ import path from 'node:path';
 // Browser acceptance for the current TripHalo homepage. Run against a local
 // development or production server: RESONANCE_URL=http://127.0.0.1:4310 node scripts/verify-resonance.mjs
 const url = process.env.RESONANCE_URL || 'http://127.0.0.1:4310';
-const output = path.resolve('evidence/resonance');
+const output = path.resolve(process.env.RESONANCE_EVIDENCE_DIR || 'evidence/resonance');
 const record = !process.argv.includes('--no-record');
 const recordOnly = process.argv.includes('--record-only');
 const browserChannel = process.env.PLAYWRIGHT_CHANNEL || 'chrome';
@@ -94,7 +94,7 @@ async function exactCopy(page) {
   const contact = page.locator('a[href^="mailto:"]');
   assert.ok(await contact.count() >= 1, 'Email link missing');
   for (const link of await contact.all()) await expect(link).toHaveAttribute('href', 'mailto:hello@triphalo.com');
-  await expect(page.locator('form, input:not([type="range"]), textarea, iframe, a[href^="tel:"]')).toHaveCount(0);
+  await expect(page.locator('form, input, textarea, iframe, a[href^="tel:"]')).toHaveCount(0);
   return { lockedCopyFragments: copy.length, emailLinks: await contact.count() };
 }
 
@@ -150,8 +150,10 @@ try {
     await page.waitForTimeout(800);
     const moving2 = await canvasShot(page);
     assert.notEqual(moving1, moving2, 'Artwork did not change while motion was active');
-    await page.getByRole('button', { name: 'Pause motion', exact: true }).click();
-    await expect(page.getByRole('button', { name: 'Resume motion', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Motion on — pause animation', exact: true })).toHaveText('Motion on');
+    await page.getByRole('button', { name: 'Motion on — pause animation', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toHaveText('Motion off');
     await page.mouse.move(6, 500);
     await page.waitForTimeout(1400);
     const paused1 = await canvasShot(page);
@@ -159,22 +161,21 @@ try {
     const paused2 = await canvasShot(page);
     assert.equal(paused1, paused2, 'Artwork continues changing after pause');
     await page.screenshot({ path: path.join(output, 'desktop-paused.png') });
-    await page.getByRole('button', { name: 'Resume motion', exact: true }).click();
+    await page.getByRole('button', { name: 'Motion off — resume animation', exact: true }).click();
     await page.waitForTimeout(700);
     assert.notEqual(await canvasShot(page), paused2, 'Resume did not restart the artwork');
     return { moving1, moving2, paused1, paused2 };
   });
   await check('Keyboard tuning and Resonate interaction', async () => {
-    const slider = page.getByRole('slider', { name: 'Tune the halo', exact: true });
-    await expect(slider).toBeVisible();
-    await slider.focus();
-    const before = Number(await slider.inputValue());
-    const max = Number(await slider.getAttribute('max') || '100');
-    await page.keyboard.press(before < max ? 'ArrowRight' : 'ArrowLeft');
-    assert.notEqual(Number(await slider.inputValue()), before, 'Keyboard arrow did not change tuning');
     const resonate = page.getByRole('button', { name: 'Resonate', exact: true });
+    const canvas = page.locator('canvas').first();
+    const before = Number(await canvas.getAttribute('data-tuning'));
     await resonate.focus();
+    await page.keyboard.press(before < 1 ? 'ArrowRight' : 'ArrowLeft');
+    await expect.poll(async () => Number(await canvas.getAttribute('data-tuning'))).not.toBe(before);
+    const pulseBefore = Number(await canvas.getAttribute('data-pulse'));
     await page.keyboard.press('Enter');
+    await expect.poll(async () => Number(await canvas.getAttribute('data-pulse'))).toBeGreaterThan(pulseBefore);
     await expect(resonate).toBeVisible();
   });
   for (const id of ['belief', 'work', 'contact', 'opening']) {
@@ -223,22 +224,33 @@ try {
       await expect(mobile.getByRole('heading', { level: 1 })).toBeInViewport();
       await mobile.screenshot({ path: path.join(output, `${label}-opening.png`) });
     });
-    await check(`${label} motion and tuning touch controls`, async () => {
-      const pause = mobile.getByRole('button', { name: 'Pause motion', exact: true });
+    await check(`${label} motion, direct touch tuning and resonance`, async () => {
+      const pause = mobile.getByRole('button', { name: 'Motion on — pause animation', exact: true });
       await expect(pause).toBeInViewport();
       await pause.tap();
-      await expect(mobile.getByRole('button', { name: 'Resume motion', exact: true })).toBeVisible();
-      const slider = mobile.getByRole('slider', { name: 'Tune the halo', exact: true });
-      await slider.scrollIntoViewIfNeeded();
-      const bounds = await slider.boundingBox();
+      await expect(mobile.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toBeVisible();
+      const resonate = mobile.getByRole('button', { name: 'Resonate', exact: true });
+      const canvas = mobile.locator('canvas').first();
+      const bounds = await resonate.boundingBox();
       assert.ok(bounds && bounds.width > 60);
-      const previousValue = Number(await slider.inputValue());
-      const minimum = Number(await slider.getAttribute('min') || '0');
-      const maximum = Number(await slider.getAttribute('max') || '100');
-      const relative = (previousValue - minimum) / (maximum - minimum);
-      await mobile.touchscreen.tap(bounds.x + bounds.width * (relative > .7 ? .2 : .8), bounds.y + bounds.height / 2);
-      assert.notEqual(Number(await slider.inputValue()), previousValue, 'Touch did not change tuning');
-      await mobile.getByRole('button', { name: 'Resonate', exact: true }).tap();
+      const previousValue = Number(await canvas.getAttribute('data-tuning'));
+      const touch = await context.newCDPSession(mobile);
+      const start = { x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 };
+      const distance = previousValue > .7 ? -45 : 45;
+      try {
+        await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [start] });
+        for (let step = 1; step <= 6; step++) {
+          await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: start.x + distance * step / 6, y: start.y }] });
+          await mobile.waitForTimeout(35);
+        }
+        await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      } finally {
+        await touch.detach();
+      }
+      await expect.poll(async () => Number(await canvas.getAttribute('data-tuning'))).not.toBe(previousValue);
+      const pulseBefore = Number(await canvas.getAttribute('data-pulse'));
+      await resonate.tap();
+      await expect.poll(async () => Number(await canvas.getAttribute('data-pulse'))).toBeGreaterThan(pulseBefore);
     });
     for (const id of ['belief', 'work', 'contact', 'opening']) {
       await check(`${label} #${id} navigation`, async () => {
@@ -254,8 +266,8 @@ try {
   const reducedPage = await reduced.newPage();
   await check('Reduced motion starts paused and remains visually stable', async () => {
     await open(reducedPage, 'reduced-motion');
-    await expect(reducedPage.getByRole('button', { name: 'Resume motion', exact: true })).toBeVisible();
-    await expect(reducedPage.getByRole('button', { name: 'Pause motion', exact: true })).toHaveCount(0);
+    await expect(reducedPage.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toBeVisible();
+    await expect(reducedPage.getByRole('button', { name: 'Motion on — pause animation', exact: true })).toHaveCount(0);
     await reducedPage.mouse.move(6, 500);
     await reducedPage.waitForTimeout(1000);
     const first = await canvasShot(reducedPage);
@@ -289,17 +301,18 @@ try {
       await demo.mouse.move(1040 + Math.cos(angle) * 210, 460 + Math.sin(angle) * 260);
       await demo.waitForTimeout(45);
     }
-    const slider = demo.getByRole('slider', { name: 'Tune the halo', exact: true });
-    const bounds = await slider.boundingBox();
-    assert.ok(bounds, 'Recording tuning slider missing');
-    await demo.mouse.move(bounds.x + bounds.width * .45, bounds.y + bounds.height / 2);
+    const resonate = demo.getByRole('button', { name: 'Resonate', exact: true });
+    const bounds = await resonate.boundingBox();
+    assert.ok(bounds, 'Recording halo interaction target missing');
+    const centerX = bounds.x + bounds.width / 2;
+    const centerY = bounds.y + bounds.height / 2;
+    await demo.mouse.move(centerX, centerY);
     await demo.mouse.down();
-    for (const proportion of [.5, .6, .7, .8, .9, .75, .6, .45]) {
-      await demo.mouse.move(bounds.x + bounds.width * proportion, bounds.y + bounds.height / 2, { steps: 3 });
+    for (const offset of [15, 30, 45, 60, 75, 90, 75, 60]) {
+      await demo.mouse.move(centerX + offset, centerY, { steps: 3 });
       await demo.waitForTimeout(100);
     }
     await demo.mouse.up();
-    const resonate = demo.getByRole('button', { name: 'Resonate', exact: true });
     await resonate.hover();
     await demo.mouse.down();
     await demo.waitForTimeout(800);
@@ -312,9 +325,9 @@ try {
     await demo.waitForTimeout(1600);
     await scrollJourney(demo, 'contact', 4000);
     await demo.waitForTimeout(1800);
-    await demo.getByRole('button', { name: 'Pause motion', exact: true }).click();
+    await demo.getByRole('button', { name: 'Motion on — pause animation', exact: true }).click();
     await demo.waitForTimeout(900);
-    await demo.getByRole('button', { name: 'Resume motion', exact: true }).click();
+    await demo.getByRole('button', { name: 'Motion off — resume animation', exact: true }).click();
     await demo.waitForTimeout(900);
     await context.close();
     const webm = path.join(output, 'triphalo-interactions.webm');
