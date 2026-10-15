@@ -49,7 +49,7 @@ test('keyboard skip link and native section anchors reach readable content', asy
   }
 });
 
-test('artwork is alive on arrival, pauses, resumes and accepts keyboard tuning', async ({ page }) => {
+test('artwork is alive on arrival and accepts keyboard tuning', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await ready(page);
@@ -57,19 +57,6 @@ test('artwork is alive on arrival, pauses, resumes and accepts keyboard tuning',
   const first = await artwork(page);
   await page.waitForTimeout(450);
   expect(await artwork(page)).not.toBe(first);
-  await expect(page.getByRole('button', { name: 'Motion on — pause animation', exact: true })).toHaveText('Motion on');
-  await page.getByRole('button', { name: 'Motion on — pause animation', exact: true }).focus();
-  await page.keyboard.press('Space');
-  await expect(page.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button', { name: 'Motion off — resume animation', exact: true })).toHaveText('Motion off');
-  await page.waitForTimeout(700);
-  const paused = await artwork(page);
-  await page.waitForTimeout(450);
-  expect(await artwork(page)).toBe(paused);
-  await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: 'Motion on — pause animation', exact: true })).toHaveAttribute('aria-pressed', 'false');
-  await page.waitForTimeout(450);
-  expect(await artwork(page)).not.toBe(paused);
   const resonate = page.getByRole('button', { name: 'Resonate', exact: true });
   const canvas = page.locator('canvas').first();
   const before = Number(await canvas.getAttribute('data-tuning'));
@@ -79,18 +66,17 @@ test('artwork is alive on arrival, pauses, resumes and accepts keyboard tuning',
   expect(errors).toEqual([]);
 });
 
-test('reduced-motion preference starts still and can be explicitly resumed', async ({ page }) => {
+test('reduced-motion preference keeps artwork still and responds to preference changes', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await ready(page);
-  const resume = page.getByRole('button', { name: 'Motion off — resume animation', exact: true });
-  await expect(resume).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('canvas')).toHaveAttribute('data-paused', 'true');
   await page.mouse.move(4, 450);
   await page.waitForTimeout(300);
   const still = await artwork(page);
   await page.waitForTimeout(450);
   expect(await artwork(page)).toBe(still);
-  await resume.click();
-  await expect(page.getByRole('button', { name: 'Motion on — pause animation', exact: true })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(page.locator('canvas')).toHaveAttribute('data-paused', 'false');
   await page.mouse.move(4, 450);
   await page.waitForTimeout(450);
   expect(await artwork(page)).not.toBe(still);
@@ -131,7 +117,7 @@ test('mobile and narrow layouts keep the headline visible and email reachable wi
   }
 });
 
-test('desktop and mobile headers expose only three section links and a working motion control', async ({ browser, baseURL }) => {
+test('desktop and mobile headers expose three section links without a motion control', async ({ browser, baseURL }) => {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
     const mobile = viewport.width < 760;
     const context = await browser.newContext({ viewport, isMobile: mobile, hasTouch: mobile });
@@ -144,7 +130,8 @@ test('desktop and mobile headers expose only three section links and a working m
       const links = header.getByRole('navigation', { name: 'Main navigation' }).getByRole('link');
       await expect(links).toHaveCount(3);
       expect(await links.evaluateAll(items => items.map(item => item.getAttribute('href')))).toEqual(['#belief', '#work', '#contact']);
-      await expect(header.getByRole('button')).toHaveCount(1);
+      await expect(header.getByRole('button')).toHaveCount(0);
+      await expect(page.getByText(/Motion (on|off)/)).toHaveCount(0);
       await expect(page.locator('.r-controls, .r-chapter-nav, .r-chapter-count, .r-chapter-dots, .r-progress')).toHaveCount(0);
       const targets = await header.locator('a, button').evaluateAll(items => items.map(item => {
         const { x, y, width, height } = item.getBoundingClientRect();
@@ -157,18 +144,8 @@ test('desktop and mobile headers expose only three section links and a working m
         expect(target.x + target.width).toBeLessThanOrEqual(viewport.width);
       }
       if (mobile) {
-        expect(Math.abs(targets[0].y - targets[4].y)).toBeLessThan(1);
         expect(targets[1].y).toBeGreaterThanOrEqual(targets[0].y + targets[0].height);
       }
-      const pause = header.getByRole('button', { name: 'Motion on — pause animation', exact: true });
-      if (mobile) await pause.tap(); else await pause.click();
-      await expect(canvas).toHaveAttribute('data-paused', 'true');
-      const frozenFrames = await canvas.getAttribute('data-frames');
-      await page.waitForTimeout(200);
-      await expect(canvas).toHaveAttribute('data-frames', frozenFrames!);
-      const resume = header.getByRole('button', { name: 'Motion off — resume animation', exact: true });
-      if (mobile) await resume.tap(); else await resume.click();
-      await expect.poll(async () => Number(await canvas.getAttribute('data-frames'))).toBeGreaterThan(Number(frozenFrames));
     } finally {
       await context.close();
     }
@@ -182,7 +159,7 @@ test('mobile resize notifications preserve the drawing buffer until its size cha
     await page.goto(baseURL!);
     const canvas = page.locator('canvas[data-ready="true"]');
     await expect(canvas).toBeVisible();
-    await page.getByRole('button', { name: 'Motion on — pause animation', exact: true }).tap();
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await expect(canvas).toHaveAttribute('data-paused', 'true');
     const writes = await canvas.evaluate(async element => {
       await document.fonts.ready;

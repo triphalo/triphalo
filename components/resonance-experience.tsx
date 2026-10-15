@@ -93,15 +93,14 @@ export default function ResonanceExperience({ children, wordmark }: { children: 
       delete document.documentElement.dataset.resonanceMotion;
     };
   }, []);
-  const toggleMotion = () => { const next = !paused; setPaused(next); update({ paused: next, reducedMotion: next ? scene.current.reducedMotion : false }); document.documentElement.dataset.resonanceMotion = next ? "paused" : "playing"; };
   const changeTuning = (value: number) => { const next = Math.max(0, Math.min(100, value)); setTuning(next); update({ tuning: next / 100 }); };
   return <div ref={root} className="resonance" data-chapter={chapter} data-ready={ready} data-paused={paused} data-expanded={expanded}>
     <a className="r-skip" href="#main">Skip to content</a>
-    <noscript><style>{".r-pause,.r-halo-touch{display:none}.r-canvas{display:none}"}</style></noscript>
+    <noscript><style>{".r-halo-touch{display:none}.r-canvas{display:none}"}</style></noscript>
     <div className="r-atmosphere" aria-hidden="true" />
     <div className="r-artwork" aria-hidden="true"><div className="r-fallback"><div /><div /><div /></div><canvas ref={canvas} className="r-canvas" /></div>
     <div className="r-grain" aria-hidden="true" />
-    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home">{wordmark ?? <span>TripHalo</span>}</a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav><button className="r-pause" onClick={toggleMotion} aria-label={paused ? "Motion off — resume animation" : "Motion on — pause animation"} aria-pressed={paused}>{paused ? "Motion off" : "Motion on"}</button></header>
+    <header className="r-header"><a href="#opening" className="r-brand" aria-label="TripHalo home">{wordmark ?? <span>TripHalo</span>}</a><nav aria-label="Main navigation"><a href="#belief" aria-current={chapter === 1 ? "location" : undefined}>Belief</a><a href="#work" aria-current={chapter === 2 ? "location" : undefined}>Work</a><a href="#contact" aria-current={chapter === 3 ? "location" : undefined}>Contact <span aria-hidden="true">↗</span></a></nav></header>
     <button className="r-halo-touch" aria-label="Resonate" aria-keyshortcuts="ArrowLeft ArrowRight"
       onPointerEnter={() => update({ active: true })}
       onPointerLeave={() => { if (!held.current) update({ active: false }); }}
